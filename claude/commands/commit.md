@@ -2,17 +2,17 @@
 
 This command helps you create well-formatted commits with conventional commit messages.
 
-## What This Command Does
+## The processing flow of this command
 
 1. Runs `git status` to check staged files:
-    - If no files are staged, runs `git add`
+    - If 0 files are staged, runs `git add`
     - Otherwise, continue with the process
 2. Runs `git diff` and analyzes the diff to determine if multiple distinct logical changes are present
-    - If multiple distinct changes are detected, suggests splitting the commit into multiple commits
+    - If multiple distinct changes are detected, suggests `splitting the commit` into multiple commits
     - Otherwise, continue with the process
 3. Creates a commit message using conventional commit format for each commit
 
-## Guidelines for Splitting Commits
+## Guidelines for splitting the commit
 
 When analyzing the diff, consider splitting commits based on these criteria:
 
@@ -22,7 +22,7 @@ When analyzing the diff, consider splitting commits based on these criteria:
 4. **Logical grouping**: Changes that would be easier to understand or review separately
 5. **Size**: Very large changes that would be clearer if broken down
 
-## Best Practices for Commits
+## Best practices for commits
 
 - **Atomic commits**: Each commit should contain related changes that serve a single purpose
 - **Split large changes**: If changes touch multiple concerns, split them into separate commits
@@ -35,7 +35,7 @@ When analyzing the diff, consider splitting commits based on these criteria:
     - `perf`: Improve performance
     - `test`: Add or fix tests
     - `chore`: Change build process, publish process, etc.
-- **Present tense, imperative mood**: Write commit messages as commands, e.g., "add feature" not "added feature"
+- **Present tense, imperative mood**: Write commit messages as commands, e.g., "add feature" not "added feature".
 - **Concise commit message**: Only allows one line message, and must be less than 72 characters. Never generate detailed information.
 
 ## Examples
@@ -61,6 +61,7 @@ Good commit messages:
 
 ## Important Notes
 
+- Prohibit additions like 'Generated with Claude' or 'Co-Authored-By: Claude' in commit messages
 - If encounter lint issues, you should try to fix the issues
 - The commit message will be constructed based on the changes detected
 - Before committing, the command will review the diff to identify if multiple commits would be more appropriate
