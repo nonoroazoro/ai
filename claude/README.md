@@ -8,6 +8,7 @@ Specialized agents for specific tasks:
 
 - **mcp-manager** - Manage MCP servers
 - **memory-builder** - Build knowledge systems
+- **tester** - Comprehensive test quality assurance
 - **library-researcher** - Research libraries and frameworks
 
 ## Commands
