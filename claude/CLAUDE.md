@@ -161,7 +161,7 @@
 **前置准备**:
 
 1. 检查是否已安装 `Context7`, `Grep`, `Spec Workflow` 等常用 MCP。
-2. 如未安装请使用 `mcp-installer agent` 安装这些 MCP。
+2. 如未安装请使用 `mcp-manager agent` 安装这些 MCP。
 3. 你也可以等到用户提出相关需求时，再为用户安装所需的 MCP。
 
 ### 文档、代码检索工具
