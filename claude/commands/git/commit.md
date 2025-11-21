@@ -5,9 +5,9 @@ This command helps you create well-formatted commits with conventional commit me
 ## The processing flow of this command
 
 1. Runs `git status` to check staged files:
-    - If 0 files are staged, runs `git add`
+    - If 0 files are staged, runs `git add` to stage changes
     - Otherwise, continue with the process
-2. Runs `git diff` and analyzes the diff to determine if multiple distinct logical changes are present
+2. Runs `git diff --cached` to analyze **staged changes** and determine if multiple distinct logical changes are present
     - If multiple distinct changes are detected, suggests `splitting the commit` into multiple commits
     - Otherwise, continue with the process
 3. Creates a commit message using conventional commit format for each commit
