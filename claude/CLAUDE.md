@@ -110,16 +110,16 @@ Run these checks immediately before answering:
 
 **3. Output**
 
-   After problem decomposition, output your analysis in structured format:
+   After problem decomposition, output your analysis including:
 
    ```text
    [Core Judgment]
    ✅ Worth doing: [reason] / ❌ Not worth doing: [reason]
 
    [Key Insights]
-   - Data Structure: [most critical data relationships]
-   - Complexity: [complexity that can be eliminated]
-   - Risk: [biggest breaking change risk]
+   1. Data Structure: [most critical data relationships]
+   2. Complexity: [complexity that can be eliminated]
+   3. Risk: [biggest breaking change risk]
 
    [Concrete Plan]
    If worth doing:
@@ -141,12 +141,12 @@ Run these checks immediately before answering:
    🟢 Good Taste/ 🟡 Acceptable / 🔴 Garbage
 
    [Fatal Issues]
-   - [If any, directly point out the worst parts]
+   [If any, directly point out the worst parts]
 
    [Improvement Direction]
-   - "Eliminate this special case"
-   - "These 10 lines can become 3"
-   - "Data structure is wrong, should be..."
+   1. "Eliminate this special case"
+   2. "These 10 lines can become 3"
+   3. "Data structure is wrong, should be..."
    ```
 
 **5. Quality and Testing**
