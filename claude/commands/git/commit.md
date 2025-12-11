@@ -11,6 +11,9 @@ This command helps you create well-formatted commits with conventional commit me
     - If multiple distinct changes are detected, suggests `splitting the commit` into multiple commits
     - Otherwise, continue with the process
 3. Creates a commit message using conventional commit format for each commit
+4. **Ask user: Is this commit AI-generated?**
+    - Option 1: Yes, Add `AI-Generated-By: [coding tool name]` trailer
+    - Option 2: No, Skip trailer and complete the process
 
 ## Guidelines for splitting the commit
 
@@ -36,7 +39,7 @@ When analyzing the diff, consider splitting commits based on these criteria:
     - `test`: Add or fix tests
     - `chore`: Change build process, publish process, etc.
 - **Present tense, imperative mood**: Write commit messages as commands, e.g., "add feature" not "added feature".
-- **Concise commit message**: Only allows one line message, and must be less than 72 characters. Never generate detailed information.
+- **Concise commit message**: The subject line must be less than 72 characters. Detailed body is optional, if provided, keep it precise and concise.
 
 ## Examples
 
@@ -59,9 +62,23 @@ Good commit messages:
 - fix: strengthen authentication password requirements
 - feat: improve form accessibility for screen readers
 
+## AI Generation Marking
+
+After the user selects **Option 1: Yes**:
+
+- Use `git interpret-trailers` to append the trailer to commit message
+- Format: `AI-Generated-By: claude` (or `gemini`, `copilot`, etc.)
+- Example:
+
+  ```bash
+  # After creating commit message file
+  git interpret-trailers --trailer "AI-Generated-By: claude" --in-place <commit-msg-file>
+  # Then commit with the modified message file
+  git commit -F <commit-msg-file>
+  ```
+
 ## Important Notes
 
-- Prohibit additions like 'Generated with Claude' or 'Co-Authored-By: Claude' in commit messages
 - If encounter lint issues, you should try to fix the issues
 - The commit message will be constructed based on the changes detected
 - Before committing, the command will review the diff to identify if multiple commits would be more appropriate
