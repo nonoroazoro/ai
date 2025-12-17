@@ -2,21 +2,19 @@
 
 Personal AI tools instructions and prompts collection.
 
-## What's Inside
+## Structure
 
-- **claude** - Claude Code instructions (agents, commands, skills)
+- **/claude** - Claude Code instructions (agents, commands, skills)
     - Install via [Claude Code plugin](https://code.claude.com/docs/en/plugins) *(recommended)*:
 
       ```bash
-      # In Claude Code CLI
       /plugin marketplace add nonoroazoro/ai
-
-      /plugin install linus@nonoroazoro/ai
+      /plugin install linus@plugins
       ```
 
     - Install manually: Copy `CLAUDE.md`, `agents`, `commands`, etc. into your `~/.claude` folder.
 
-- **prompts** - Reusable prompts and meta-prompts
+- **/prompts** - Reusable prompts and meta-prompts
 
 ## The Design Philosophy of AI Instructions
 

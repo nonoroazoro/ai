@@ -1,0 +1,15 @@
+{
+  "name": "plugins",
+  "owner": {
+    "name": "nonoroazoro",
+    "url": "https://github.com/nonoroazoro"
+  },
+  "plugins": [
+    {
+      "name": "linus",
+      "description": "Linus Torvalds-style engineering workflow, including specialized agents and commands.",
+      "source": "./claude",
+      "homepage": "https://github.com/nonoroazoro/ai"
+    }
+  ]
+}
