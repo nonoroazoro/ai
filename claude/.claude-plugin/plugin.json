@@ -1,0 +1,22 @@
+{
+  "name": "linus",
+  "version": "1.0.0",
+  "description": "Linus Torvalds-style engineering workflow, including specialized agents and commands.",
+  "author": {
+    "name": "nonoroazoro",
+    "url": "https://github.com/nonoroazoro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nonoroazoro/ai.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "linus",
+    "claude-code",
+    "code-review",
+    "git",
+    "mcp",
+    "test"
+  ]
+}
