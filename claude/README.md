@@ -23,7 +23,14 @@ Coming soon.
 
 ## Usage
 
-Copy `CLAUDE.md`, `agents`, `commands`, etc. into `~/.claude` folder.
+- Install manually: Copy `CLAUDE.md`, `agents`, `commands`, etc. into your `~/.claude` folder.
+
+- Install via [Claude Code plugin](https://code.claude.com/docs/en/plugins) *(not recommended yet, lack of dependency management, etc.)*:
+
+    ```bash
+    /plugin marketplace add nonoroazoro/ai
+    /plugin install linus@plugins
+    ```
 
 Instructions will be auto-loaded by Claude Code:
 
