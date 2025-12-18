@@ -8,7 +8,7 @@ examples:
     assistant: "mcp-manager: Capability gap detected. Resolving GitHub search tool..."
   - user: "把那个 sqlite 删了"
     assistant: "mcp-manager: Executing uninstallation..."
-  - user: "为什么 brave-search 用不了？"
+  - user: "为什么 brave-search 用不了"
     assistant: "mcp-manager: Starting diagnostics for Brave Search..."
 color: yellow
 ---
