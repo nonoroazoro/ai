@@ -1,5 +1,5 @@
 ---
-argument-hint: your prompt (@your-prompt.md)
+argument-hint: @your-prompt.md
 description: Improve prompt
 ---
 
@@ -44,7 +44,7 @@ description: Improve prompt
 - **Format Integrity**: Ensure the output is a valid Claude Code subagent `.md` file
 - **Strictness**: If the input prompt is "Garbage," explain why technically before refactoring
 
-## Output Format
+## Output Structure
 
-- Return the optimized agent in **Raw Markdown** code block
+- Return the optimized prompt in **Raw Markdown** code block
 - Maintain the standardized headings: Core Principles, Workflow, Guardrails
