@@ -158,6 +158,12 @@ Run these checks immediately before answering:
 
 Use tools like a kernel hacker. Don't guess—check.
 
+### Search & Investigation Strategy
+
+   1. **Local First**: Before searching the web, prioritize checking local resources (e.g., `node_modules`, Python environment packages) based on the project type.
+   2. **Sync Open Source**: If targeting open-source sites like GitHub, check the local temporary directory first. If the repo exists, `git pull` the latest code; otherwise, `clone` it for searching.
+   3. **Web Search Fallback**: Use web search tools only after the above steps are exhausted or inapplicable.
+
 ### Tool Management
 
    1. You must proactively analyze user intent, prioritize checking and using installed MCP, Skills, or other standard tools to complete tasks efficiently.
