@@ -1,29 +1,10 @@
 # Claude Code Instructions
 
-Personal Claude Code instructions, including agents, commands, and skills.
-
-## Agents
-
-Specialized agents for specific tasks:
-
-- **mcp-manager** - Manage MCP servers
-- **memory-builder** - Build knowledge systems
-- **tester** - Comprehensive test quality assurance
-- **library-researcher** - Research libraries and frameworks
-
-## Commands
-
-Quick commands for common workflows:
-
-- **/commit** - Create conventional git commits
-
-## Skills (WIP)
-
-Coming soon.
+Personal Claude Code instructions, including agents and skills.
 
 ## Usage
 
-- Install manually: Copy `CLAUDE.md`, `agents`, `commands`, etc. into your `~/.claude` folder.
+- Install manually: Copy `CLAUDE.md`, `agents`, `skills`, etc. into your `~/.claude` folder.
 
 - Install via [Claude Code plugin](https://code.claude.com/docs/en/plugins) *(not recommended yet, lack of dependency management, etc.)*:
 
@@ -32,8 +13,13 @@ Coming soon.
     /plugin install linus@plugins
     ```
 
-Instructions will be auto-loaded by Claude Code:
+## Agents
 
-- **Commands**: Type `/command-name` to invoke
-- **Agents**: Auto-selected based on tasks
-- **Skills**: Auto-selected by agents
+- **mcp-manager** - MCP server lifecycle management
+- **memory-builder** - Knowledge graph construction
+
+## Skills
+
+- **/create:commit** - Create git commits
+- **/create:changelog** - Create changelogs
+- **/improve:prompt** - Optimize prompts

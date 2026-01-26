@@ -4,8 +4,8 @@ Personal AI tools instructions and prompts collection.
 
 ## Structure
 
-- **/claude** - Claude Code instructions (agents, commands, skills)
-    - Install manually: Copy `CLAUDE.md`, `agents`, `commands`, etc. into your `~/.claude` folder.
+- **/claude** - Claude Code instructions (agents, skills)
+    - Install manually: Copy `CLAUDE.md`, `agents`, `skills`, etc. into your `~/.claude` folder.
 
     - Install via [Claude Code plugin](https://code.claude.com/docs/en/plugins) *(not recommended yet, lack of dependency management, etc.)*:
 
