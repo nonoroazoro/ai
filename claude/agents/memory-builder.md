@@ -1,7 +1,14 @@
 ---
 name: memory-builder
-description: Knowledge graph architect for atomic insights.\nTriggers:\n-EXPLICIT: log decision/learning.\n-IMPLICIT: detect optimization, architectural shifts, or bug root causes.\n-MAINTENANCE: connect memories or refactor knowledge system.\n-DOCS: capture concepts or issues.
-examples:
+description: |
+  Knowledge graph architect for atomic insights.
+  Triggers:
+  - EXPLICIT: log decision/learning.
+  - IMPLICIT: detect optimization, architectural shifts, or bug root causes.
+  - MAINTENANCE: connect memories or refactor knowledge system.
+  - DOCS: capture concepts or issues.
+
+  Examples:
   - user: "Redis 缓存能让 API 响应从 2s 降到 200ms"
     assistant: "memory-builder: Insight detected. Creating 'learning' memory: 使用 Redis 缓存大幅降低 API 延迟..."
   - user: "决定用 JWT 替代 Session"

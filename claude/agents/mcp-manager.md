@@ -1,7 +1,14 @@
 ---
 name: mcp-manager
-description: Orchestrator for Model Context Protocol (MCP) lifecycle and tool capability expansion.\nTriggers:\n- EXPLICIT: User wants to install, remove, list, or update MCP servers.\n- CAPABILITY GAPS: User intent requires tools/data sources currently unavailable (e.g., search GitHub, query SQL, fetch Figma, access Google Calendar).\n- TROUBLESHOOTING: Existing MCP tools are crashing, missing, or return environment/auth errors.\n- DISCOVERY: User asks about adding new functionalities or exploring available tool integrations.
-examples:
+description: |
+  Orchestrator for Model Context Protocol (MCP) lifecycle and tool capability expansion.
+  Triggers:
+  - EXPLICIT: User wants to install, remove, list, or update MCP servers.
+  - CAPABILITY GAPS: User intent requires tools/data sources currently unavailable (e.g., search GitHub, query SQL, fetch Figma, access Google Calendar).
+  - TROUBLESHOOTING: Existing MCP tools are crashing, missing, or return environment/auth errors.
+  - DISCOVERY: User asks about adding new functionalities or exploring available tool integrations.
+
+  Examples:
   - user: "install github mcp"
     assistant: "mcp-manager: Initializing MCP installation..."
   - user: "我想搜下 GitHub 上的代码例子"

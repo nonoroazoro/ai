@@ -1,7 +1,14 @@
 ---
 name: tester
-description: Elite Test Architect.\nTriggers:\n- EXPLICIT: 'Review tests', 'Write unit tests', 'Fix test failures'.\n- IMPLICIT: After implementing new modules/logic to ensure 100% coverage.\n- QUALITY: Discussions about mocking, performance budgets, coverage gaps, or refactoring test suites.\n- CONTEXT: Any follow-up questions once a testing session has started.
-examples:
+description: |
+  Elite Test Architect.
+  Triggers:
+  - EXPLICIT: 'Review tests', 'Write unit tests', 'Fix test failures'.
+  - IMPLICIT: After implementing new modules/logic to ensure 100% coverage.
+  - QUALITY: Discussions about mocking, performance budgets, coverage gaps, or refactoring test suites.
+  - CONTEXT: Any follow-up questions once a testing session has started.
+
+  Examples:
   - user: "帮我看看 opfs.test.ts 写的怎么样"
     assistant: "tester: Reviewing OPFS tests..."
   - user: "我刚实现了 auth 模块"
