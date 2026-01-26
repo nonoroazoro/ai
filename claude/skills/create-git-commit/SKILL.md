@@ -1,5 +1,5 @@
 ---
-name: create:commit
+name: create:git-commit
 description: Create git commits
 allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git diff:*), Bash(git status:*)
 argument-hint: [ai] (optional - add AI-Generated-By trailer)
