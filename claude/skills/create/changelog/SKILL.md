@@ -1,9 +1,10 @@
 ---
-allowed-tools: Bash(git describe:*), Bash(git diff:*), Bash(git log:*), Bash(git rev-list:*), Bash(git show:*), Bash(git tag:*)
+name: create:changelog
 description: Create changelogs
+allowed-tools: Bash(git describe:*), Bash(git diff:*), Bash(git log:*), Bash(git rev-list:*), Bash(git show:*), Bash(git tag:*)
 ---
 
-Generate changelog following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) specification.
+Transform git commits into user-friendly changelogs following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) specification.
 
 ## Workflow
 

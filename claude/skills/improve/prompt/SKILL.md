@@ -1,6 +1,7 @@
 ---
-argument-hint: @your-prompt.md
-description: Improve prompt
+name: improve:prompt
+description: Optimize prompts for AI agents and skills. Use when refining SKILL.md files, agent definitions, or any AI instruction set. Focuses on token efficiency, clarity, and actionability.
+argument-hint: "@your-prompt.md"
 ---
 
 ## Core Principles
