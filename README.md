@@ -10,10 +10,6 @@ Install via Claude Code's plugin system:
 /plugin marketplace add nonoroazoro/ai
 ```
 
-```bash
-/plugin install linus@plugins
-```
-
 ## Agents
 
 - **mcp-manager** - MCP lifecycle management
