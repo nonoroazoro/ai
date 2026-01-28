@@ -1,5 +1,5 @@
 ---
-name: create:changelog
+name: create-changelog
 description: Create changelogs
 allowed-tools: Bash(git describe:*), Bash(git log:*), Bash(git tag:*)
 ---
