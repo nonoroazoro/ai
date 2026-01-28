@@ -2,38 +2,26 @@
 
 Personal AI tools instructions and prompts collection.
 
-## Structure
+## Installation
 
-- **/claude** - Claude Code instructions (agents, skills)
-    - Install manually: Copy `CLAUDE.md`, `agents`, `skills`, etc. into your `~/.claude` folder.
+Install via Claude Code's plugin system:
 
-    - Install via [Claude Code plugin](https://code.claude.com/docs/en/plugins) *(not recommended yet, lack of dependency management, etc.)*:
+```bash
+/plugin marketplace add nonoroazoro/ai
+```
 
-      ```bash
-      /plugin marketplace add nonoroazoro/ai
-      /plugin install linus@plugins
-      ```
+```bash
+/plugin install linus@plugins
+```
 
-- **/prompts** - Reusable prompts and meta-prompts
+## Agents
 
-## The Design Philosophy of AI Instructions
+- **mcp-manager** - MCP lifecycle management
+- **memory-builder** - Knowledge graph management
+- **tester** - Analyze, generate, and execute test cases
 
-**Core Principle**: Eliminate uncertainty in *planning*, maximize automation in *execution*.
+## Skills
 
-### Two-Phase Workflow
-
-**Phase 1: Plan (Human-Led)**
-
-- **Deep interaction** with user to clarify requirements
-- Confirm design decisions and trade-offs
-- Output: Clear, executable task list
-
-**Phase 2: Execute (Agent-Led)**
-
-- **Minimal interaction** with user
-- Agents autonomously handle:
-    - MCP installation
-    - Code implementation
-    - Documentation lookup
-    - Memory storage
-    - Test generation and execution
+- **/create:commit** - Create git commits
+- **/create:changelog** - Transform git commits into user-friendly changelogs following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) specification
+- **/improve:prompt** - Optimize prompts for AI agents and skills

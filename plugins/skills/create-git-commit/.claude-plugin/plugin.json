@@ -1,0 +1,9 @@
+{
+  "name": "create-git-commit",
+  "description": "Create git commits",
+  "version": "1.0.0",
+  "author": {
+    "name": "nonoroazoro",
+    "url": "https://github.com/nonoroazoro"
+  }
+}
