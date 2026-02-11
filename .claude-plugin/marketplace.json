@@ -7,6 +7,34 @@
   },
   "plugins": [
     {
+      "name": "create-changelog",
+      "description": "Transform git commits into user-friendly changelogs following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) specification",
+      "category": "productivity",
+      "source": "./plugins/skills/create-changelog",
+      "homepage": "https://github.com/nonoroazoro/ai"
+    },
+    {
+      "name": "create-git-commit",
+      "description": "Create git commits",
+      "category": "productivity",
+      "source": "./plugins/skills/create-git-commit",
+      "homepage": "https://github.com/nonoroazoro/ai"
+    },
+    {
+      "name": "figma-to-code",
+      "description": "Figma design to frontend code: design components → implement → audit → iterate",
+      "category": "development",
+      "source": "./plugins/skills/figma-to-code",
+      "homepage": "https://github.com/nonoroazoro/ai"
+    },
+    {
+      "name": "improve-prompt",
+      "description": "Optimize prompts for AI agents and skills",
+      "category": "development",
+      "source": "./plugins/skills/improve-prompt",
+      "homepage": "https://github.com/nonoroazoro/ai"
+    },
+    {
       "name": "mcp-manager",
       "description": "MCP lifecycle management",
       "category": "productivity",
@@ -25,27 +53,6 @@
       "description": "Analyze, generate, and execute test cases",
       "category": "productivity",
       "source": "./plugins/agents/tester",
-      "homepage": "https://github.com/nonoroazoro/ai"
-    },
-    {
-      "name": "create-changelog",
-      "description": "Transform git commits into user-friendly changelogs following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) specification",
-      "category": "productivity",
-      "source": "./plugins/skills/create-changelog",
-      "homepage": "https://github.com/nonoroazoro/ai"
-    },
-    {
-      "name": "create-git-commit",
-      "description": "Create git commits",
-      "category": "productivity",
-      "source": "./plugins/skills/create-git-commit",
-      "homepage": "https://github.com/nonoroazoro/ai"
-    },
-    {
-      "name": "improve-prompt",
-      "description": "Optimize prompts for AI agents and skills",
-      "category": "development",
-      "source": "./plugins/skills/improve-prompt",
       "homepage": "https://github.com/nonoroazoro/ai"
     }
   ]
