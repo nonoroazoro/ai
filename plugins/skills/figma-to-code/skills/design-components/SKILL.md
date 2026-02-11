@@ -19,8 +19,9 @@ Analyze Figma design structure and output a component spec for frontend implemen
    - Create the directory if it doesn't exist
 
 3. **Fetch Figma design data**:
-   - Call `get_metadata` with the nodeId — returns XML node tree with IDs, types, names, positions, sizes
-   - Call `get_screenshot` with the nodeId — returns design screenshot for visual reference
+   - Call `get_metadata` ONCE with the root nodeId to retrieve the FULL node tree
+   - Call `get_screenshot` ONCE with the root nodeId to retrieve the full design screenshot
+   - **DO NOT** call any Figma API on individual child nodes, only the above two calls are allowed
 
 4. **Analyze and plan component spec**:
    - Walk the metadata node tree, identify components at three levels:
