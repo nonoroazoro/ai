@@ -13,8 +13,8 @@ Takes a Figma URL and turns it into working frontend code — automatically. Bui
 
 ## Usage
 
-```
-/figma-to-code <figma-url>
+```bash
+/figma-to-code <figma-url> Create an Agent Team to complete the task
 ```
 
 That's it. The pipeline handles everything from there.
