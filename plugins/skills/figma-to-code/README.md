@@ -1,15 +1,14 @@
 # figma-to-code
 
-Takes a Figma URL and turns it into working frontend code — automatically. Built on [Claude Code Agent Teams](https://docs.anthropic.com/en/docs/claude-code/agent-teams), it spins up a team of specialized agents that break down the design into components, generate code, then audit each component visually and stylistically, fixing issues until everything looks right.
+Takes a Figma URL and turns it into working frontend code — automatically. Built on [Claude Code Agent Teams](https://docs.anthropic.com/en/docs/claude-code/agent-teams), it spins up a team of specialized agents that decompose the design into a component spec, implement the code, then audit each node against the original design and fix issues — up to 3 rounds.
 
 ## How it works
 
-1. Run `/figma-to-code <figma-url>`
-2. **design-components** analyzes the Figma design and splits it into component spec (`component-spec.json`)
-3. **implement-components** reads the spec, pulls style values from Figma, and writes the actual code
-4. For each component, it runs **visual audit** (screenshot comparison) and **style audit** (style comparison) in parallel
-5. If a component doesn't pass, it fixes the code and re-audits — up to 3 rounds
-6. Done. You get the code and a report.
+1. Team Lead: **figma-to-code** collects project context, orchestrates the pipeline
+2. Teammate: **design-components** decomposes the Figma design into a three-level component spec (page → module → component)
+3. Teammate: **implement-components** writes code for each node, using Figma design context as reference
+4. Teammate: **audit-component** compares each node's Figma design against the running implementation, scores fidelity
+5. Nodes that don't pass get fixed and re-audited — up to 3 rounds
 
 ## Usage
 
@@ -17,23 +16,25 @@ Takes a Figma URL and turns it into working frontend code — automatically. Bui
 /figma-to-code <figma-url> Create an Agent Team to complete the task
 ```
 
-That's it. The pipeline handles everything from there.
-
-You can also run individual steps standalone if you need to debug or re-run part of the pipeline:
+Individual skills can be run standalone for debugging or partial re-runs:
 
 | Skill | What it does |
 |-------|-------------|
-| `/design-components <figma-url>` | Just the component decomposition step |
-| `/implement-components [spec-path]` | Just the code generation step (no audit loop) |
-| `/audit-component-visual <node-id> <page-url>` | Screenshot comparison for a single component |
-| `/audit-component-style <node-id> <page-url>` | Computed style comparison for a single component |
+| `/figma-to-code:design-components <figma-url>` | Component decomposition |
+| `/figma-to-code:implement-components [spec-path]` | Code generation |
+| `/figma-to-code:audit-component <node-id> <dev-server-url>` | Audit a single node against its Figma design |
 
 ## Requirements
 
-- Claude Code Agent Teams
-- Figma Desktop MCP
-- Playwright MCP
+- [Claude Code Agent Teams](https://docs.anthropic.com/en/docs/claude-code/agent-teams)
+- [Figma Desktop MCP](https://www.npmjs.com/package/@anthropic-ai/claude-code-figma-mcp)
+- [Playwright MCP](https://www.npmjs.com/package/@anthropic-ai/claude-code-playwright-mcp)
 
 ## Data
 
-The only file that gets persisted is `.figma-to-code/component-spec.json`. Everything else — Figma data, audit results — lives in agent memory and doesn't touch disk.
+Persisted files live in `.figma-to-code/`:
+
+- `component-spec.json` — the component tree with nodeIds and file paths
+- `component-spec-inspector.html` — open in browser to visually inspect the spec
+
+Everything else (Figma data, audit results) lives in agent memory.
