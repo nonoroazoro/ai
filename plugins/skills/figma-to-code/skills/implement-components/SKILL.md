@@ -17,7 +17,8 @@ Implement all nodes from the component spec, with Figma design context as refere
    - For each node in the component spec:
      - Call `get_design_context` with the node's `nodeId` to get design details
      - Call `get_variable_defs` if design tokens are needed
-     - Write code following the project's conventions. Design context from Figma is the source of truth
+     - Write code following the project's conventions., design context from Figma is the source of truth
+     - For Icons: prefer component library icons when available, otherwise extract SVG from `get_design_context` and inline it. Never fabricate icon markup
      - Add `data-node-id="{nodeId}"` to the root element of every page, module, and component, matching the spec
      - Organize files by business semantics, not flat. Use folders to group related nodes
      - Update `filePath` in the `componentSpec` file after implementation
