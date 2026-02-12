@@ -31,7 +31,7 @@ You are an architecture and component design expert. Independently design the co
      - **component**: reusable UI units within modules (list, table, form, button, card, etc.)
    - Design Rules:
      - Instance nodes are strong signals for component boundaries, but simple ones (icons, tags) can stay inline
-     - Repeating structures within a module MUST be extracted as components (e.g., timeline entries, card items)
+     - Repeating structures within a module MUST be extracted as components (e.g., timeline entries, card items). Mark with `repeat` in the spec (see step 5)
      - Every node MUST map to a nodeId from the metadata
      - Visually parallel elements MUST be siblings, regardless of how Figma nests them
      - Naming: PascalCase, reflect what it is or does (e.g., `ChatHeader`, not `Frame27`). Do not copy Figma node names
@@ -58,6 +58,23 @@ You are an architecture and component design expert. Independently design the co
              "children": [
                { "name": "ProductIcon", "description": "App logo icon", "nodeId": "59:3085", "level": "component", "filePath": null },
                { "name": "BetaBadge", "description": "Badge indicating beta status", "nodeId": "181:1475", "level": "component", "filePath": null }
+             ]
+           },
+           {
+             "name": "StepTimeline",
+             "description": "Vertical timeline with connected step entries",
+             "nodeId": "164:1892",
+             "level": "module",
+             "filePath": null,
+             "children": [
+               {
+                 "name": "StepEntry",
+                 "description": "Single timeline entry with timestamp, action, and screenshots",
+                 "nodeId": "164:1893",
+                 "level": "component",
+                 "filePath": null,
+                 "repeat": { "count": 3, "nodeIds": ["164:1893", "164:1912", "164:1935"] }
+               }
              ]
            }
          ]

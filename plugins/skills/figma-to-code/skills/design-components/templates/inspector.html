@@ -79,6 +79,11 @@
         color: #e3b341;
       }
 
+      .badge-repeat {
+        background: #da363326;
+        color: #f85149;
+      }
+
       .name {
         font-size: 14px;
         font-weight: 500;
@@ -214,6 +219,15 @@
           desc.className = 'description';
           desc.textContent = node.description;
           row.appendChild(desc);
+        }
+
+        if (node.repeat)
+        {
+          const repeat = document.createElement('span');
+          repeat.className = 'badge badge-repeat';
+          repeat.textContent = `×${node.repeat.count}`;
+          repeat.title = node.repeat.nodeIds.join(', ');
+          row.appendChild(repeat);
         }
 
         li.appendChild(row);

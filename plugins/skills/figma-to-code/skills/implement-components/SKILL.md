@@ -20,6 +20,7 @@ Implement all nodes from the component spec, with Figma design context as refere
      - Write code following the project's conventions., design context from Figma is the source of truth
      - For Icons: prefer component library icons when available, otherwise extract SVG from `get_design_context` and inline it. Never fabricate icon markup
      - Add `data-node-id="{nodeId}"` to the root element of every page, module, and component, matching the spec
+     - Nodes with `repeat`: implement the component once, render it in a loop in the parent. Use each `repeat.nodeIds` entry as the `data-node-id` for each instance
      - Organize files by business semantics, not flat. Use folders to group related nodes
      - Update `filePath` in the `componentSpec` file after implementation
    - When all nodes are done:
