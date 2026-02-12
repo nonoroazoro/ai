@@ -90,6 +90,12 @@
         font-family: 'SF Mono', Menlo, monospace;
       }
 
+      .description {
+        font-size: 12px;
+        color: #8b949e;
+        font-style: italic;
+      }
+
       .toggle {
         width: 18px;
         height: 18px;
@@ -202,6 +208,14 @@
         id.textContent = node.nodeId;
         row.appendChild(id);
 
+        if (node.description)
+        {
+          const desc = document.createElement('span');
+          desc.className = 'description';
+          desc.textContent = node.description;
+          row.appendChild(desc);
+        }
+
         li.appendChild(row);
 
         if (hasChildren)
@@ -217,14 +231,14 @@
 
       function render(spec)
       {
-        countNodes(spec.components);
+        countNodes(spec.pages);
         document.getElementById('stats').innerHTML =
           `<div class="stat"><span class="c-page">${counts.page}</span> page</div>` +
           `<div class="stat"><span class="c-module">${counts.module}</span> modules</div>` +
           `<div class="stat"><span class="c-component">${counts.component}</span> components</div>`;
 
         const tree = document.getElementById('tree');
-        for (const node of spec.components) tree.appendChild(renderNode(node));
+        for (const node of spec.pages) tree.appendChild(renderNode(node));
       }
 
       const spec = /* __COMPONENT_SPEC_JSON__ */;

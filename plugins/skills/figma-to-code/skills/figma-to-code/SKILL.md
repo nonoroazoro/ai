@@ -1,66 +1,66 @@
 ---
 name: figma-to-code
-description: Figma design to frontend code using agent teams
-allowed-tools: Bash(mkdir:*), Bash(ls:*), Task, TaskOutput, SendMessage
+description: Figma design to frontend code using Claude Code Agent Teams. When the user asks to convert a Figma design to code, follow this workflow to create an agent team and orchestrate the pipeline.
+disable-model-invocation: true
 argument-hint: <figma-url>
 ---
 
-You are the Team Lead. Orchestrate the full Figma-to-code pipeline by spawning teammate agents using the `Task` tool. You do NOT call Figma MCP or write component code yourself.
+You are the Team Lead, responsible for creating the **Agent Team**, spawning Teammates, and orchestrating the workflow.
 
 ## Workflow
 
-1. **Resolve Figma URL** from `$ARGUMENTS`:
-   - Validate it's a valid Figma URL
-   - If `$ARGUMENTS` is empty or not a valid Figma URL, ASK THE USER
+1. **Resolve Figma URL**:
+   - If `$ARGUMENTS` contains a valid Figma URL, use it as `figmaURL`
+   - Otherwise, ask the user to provide one
 
-2. **Collect project tech info** (ASK THE USER):
-   - Tech stack: React / Vue / Svelte / other
-   - Component library: Arco Design / Ant Design / MUI / other / none
-   - User may provide reference docs (project conventions, design docs, etc.)
-   - If `package.json` exists, read it first to infer tech stack — only ask for what's missing
+2. **Gather project context**:
+   - If `package.json` exists, read it first to infer what you can
+   - Ask the user to confirm or fill in what's missing, using selection prompts:
+     - Tech stack: `React` / `Vue` / `Svelte` / other
+     - Component library: `Arco Design` / `Ant Design` / `MUI` / other / none
+     - Reference docs: project conventions, design docs, etc. (optional)
 
-3. **Setup**: create `.figma-to-code/` directory which is the `baseFolder` of agent teams
+3. **Setup**:
+   - Create `.figma-to-code` directory as the `{baseFolder}`
+   - Create the agent team named `figma-to-code`
 
-4. **Phase 1 — Design Components**:
-   - Use the `Task` tool to spawn a teammate agent:
-     ```
-     Task(
-       name: "design-components",
-       description: "Analyze Figma design and plan component spec",
-       subagent_type: "general-purpose",
-       prompt: "You are the design-components agent. Run the /figma-to-code:design-components skill.
-         Figma URL: <figma-url>
-         Base folder: .figma-to-code/
-         Output: {baseFolder}/component-spec.json and {baseFolder}/component-spec-inspector.html"
-     )
-     ```
-   - Wait for completion via `TaskOutput`, verify `{baseFolder}/component-spec.json` exists
+4. **Phase 1 - Design Components**:
+   - Spawn a teammate named `design-components` with prompt:
+     > Run the `/figma-to-code:design-components` skill.
+     > figmaURL: {figmaURL}
+     > baseFolder: {baseFolder}
+   - Wait for `design-components` to finish, then verify `{baseFolder}/component-spec.json` exists
 
-5. **Phase 2 — Implement Components**:
-   - Use the `Task` tool to spawn a teammate agent:
-     ```
-     Task(
-       name: "implement-components",
-       description: "Implement components from Figma design context",
-       subagent_type: "general-purpose",
-       prompt: "You are the implement-components agent. Run the /figma-to-code:implement-components skill.
-         Base folder: .figma-to-code/
-         Component spec: .figma-to-code/component-spec.json
-         Tech stack: <tech-stack>
-         Component library: <component-library>
-         Reference docs: <reference-docs>"
-     )
-     ```
-   - Wait for completion via `TaskOutput`
+5. **Phase 2 - Implement Components**:
+   - Spawn a teammate named `implement-components` with prompt:
+     > Run the `/figma-to-code:implement-components {baseFolder}/component-spec.json` skill.
+     > techStack: {techStack}
+     > componentLibrary: {componentLibrary}
+     > referenceDocs: {referenceDocs}
+   - Wait for devServerURL from `implement-components`
 
-6. **Phase 3 — Done**:
+6. **Phase 3 - Audit and Fix**:
+   - Spawn a teammate named `audit-component` with prompt:
+     > Run the `/figma-to-code:audit-component` skill.
+     > devServerURL: {devServerURL}
+   - Read `{baseFolder}/component-spec.json` to get all nodes from the spec
+   - Loop (max 3 rounds):
+     1. **Audit**:
+        - For each node (bottom-up: components → modules → pages), send `nodeId` to `audit-component`
+        - Wait for `auditResult` before proceeding
+        - If `auditResult` does not pass, add to `results` array
+        - Otherwise, continue to the next node
+     2. **Fix**:
+        - If `results` is not empty, send it as `auditResult` to `implement-components`, wait for fix confirmation
+        - Otherwise exit loop
+   - After 3 rounds, move on with remaining failures
+
+7. **Phase 4 - Done**:
    - Summarize the final result to the user:
-     - List all components and their audit status
-     - Highlight any components that didn't reach target quality within 3 rounds
+     - List all nodes and their audit status
+     - Highlight any nodes that didn't reach target quality within 3 rounds
+   - Clean up the agent team
 
 ## Guardrails
 
-- Never modify Figma data
-- All intermediate data goes to `baseFolder`
-- If any agent fails, report the error clearly and stop, DO NOT retry blindly
-- You MUST use the `Task` tool to spawn agents — do not attempt to run sub-skills inline
+- If any teammate fails, report the error and stop. Do not retry blindly.
