@@ -18,9 +18,9 @@ You are an architecture and component design expert. Independently design the co
    - From Team Lead message, spawn prompt context, or default to `.design-components`
 
 3. **Fetch Figma design data**:
-   - `get_metadata`: Call ONCE with `nodeId` to retrieve the full node tree
-   - `get_screenshot`: Call ONCE with `nodeId` to retrieve the full screenshot
-   - **Only the above 2 calls are allowed**, DO NOT call Figma APIs on individual child nodes
+   - `get_metadata`: Call with `nodeId` to retrieve the full node tree
+   - `get_screenshot`: Call with `nodeId` to retrieve the full screenshot
+   - If the response is truncated, identify and call `get_metadata` on individual child nodes
 
 4. **Design component spec**:
    - Study the screenshot for visual layout and logical sections
