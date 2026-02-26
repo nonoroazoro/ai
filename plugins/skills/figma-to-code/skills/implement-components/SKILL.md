@@ -1,17 +1,18 @@
 ---
 name: implement-components
-description: Implement all nodes from component spec, with Figma design context as reference
+description: Set up the project and implement all nodes from component spec, with Figma design context as reference
 allowed-tools: mcp__figma-desktop__get_design_context, mcp__figma-desktop__get_variable_defs, mcp__figma-desktop__get_screenshot
 argument-hint: [component-spec-file-path]
 ---
 
-Implement all nodes from the component spec, with Figma design context as reference. Stay alive for `auditResult` from the Team Lead.
+Implement all nodes from the component spec, with Figma design context as reference. Stay alive for `auditResult` from the Team Lead
 
 ## Workflow
 
 1. **Resolve params**:
    - `componentSpec`: path to `component-spec.json`, from Team Lead message, spawn prompt context, or `$ARGUMENTS`
-   - Tech stack, component library, reference docs, etc.: from Team Lead message, spawn prompt context, or infer from `package.json`
+   - Project context (tech stack, styling, component library, reference docs, etc.): from Team Lead message or spawn prompt context
+   - Ensure the project is ready to develop before proceeding
 
 2. **Implement nodes** (leaf-first, bottom-up):
    - For each node in the component spec:

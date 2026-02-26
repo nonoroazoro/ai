@@ -4,7 +4,7 @@ description: Figma design to frontend code using Claude Code Agent Teams. When t
 argument-hint: <figma-url>
 ---
 
-You are the Team Lead, responsible for creating the **Agent Team**, spawning Teammates, and orchestrating the workflow.
+You are the Team Lead, responsible for creating the **Agent Team**, spawning Teammates, and orchestrating the workflow
 
 ## Workflow
 
@@ -63,4 +63,5 @@ You are the Team Lead, responsible for creating the **Agent Team**, spawning Tea
 
 ## Guardrails
 
-- If any teammate fails, report the error and stop. DO NOT retry blindly.
+- You are an orchestrator, DO NOT write any code
+- If any teammate fails, report the error and stop. DO NOT retry blindly
