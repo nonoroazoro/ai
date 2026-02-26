@@ -1,7 +1,6 @@
 ---
 name: figma-to-code
 description: Figma design to frontend code using Claude Code Agent Teams. When the user asks to convert a Figma design to code, follow this workflow to create an agent team and orchestrate the pipeline.
-disable-model-invocation: true
 argument-hint: <figma-url>
 ---
 
@@ -17,7 +16,9 @@ You are the Team Lead, responsible for creating the **Agent Team**, spawning Tea
    - If `package.json` exists, read it first to infer what you can
    - Ask the user to confirm or fill in what's missing, using selection prompts:
      - Tech stack: `React` / `Vue` / `Svelte` / other
+     - Build tool: `Vite` / `Webpack` / `Rspack` / other
      - Component library: `Arco Design` / `Ant Design` / `MUI` / other / none
+     - Testing tool: `Vitest` / `Jest` / other / none
      - Reference docs: project conventions, design docs, etc. (optional)
 
 3. **Setup**:
@@ -35,7 +36,9 @@ You are the Team Lead, responsible for creating the **Agent Team**, spawning Tea
    - Spawn a teammate named `implement-components` with prompt:
      > Run the `/figma-to-code:implement-components {baseFolder}/component-spec.json` skill.
      > techStack: {techStack}
+     > buildTool: {buildTool}
      > componentLibrary: {componentLibrary}
+     > testingTool: {testingTool}
      > referenceDocs: {referenceDocs}
    - Wait for devServerURL from `implement-components`
 
