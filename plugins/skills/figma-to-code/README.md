@@ -5,17 +5,28 @@ Takes a Figma URL and turns it into working frontend code. Built on [Claude Code
 ## How it works
 
 ```mermaid
-flowchart TD
-    A(Figma URL) --> TL[Team Lead]
-    TL --> DC[Design Components]
-    DC -- component-spec.json --> TL
-    TL --> IC[Implement Components]
-    IC -- dev server URL --> TL
-    TL -- send nodeId --> AC[Audit Component]
-    AC -- audit report --> TL
-    TL -- "fail: audit report" --> IC
-    IC -- fixed --> TL
-    TL -- all pass --> F(Done)
+sequenceDiagram
+    actor U as User
+    participant TL as Team Lead
+    participant DC as Design Components
+    participant IC as Implement Components
+    participant AC as Audit Component
+
+    U->>TL: Figma URL
+    TL->>DC: spawn
+    DC-->>TL: component-spec.json
+    TL->>IC: spawn
+    IC-->>TL: dev server URL
+    TL->>AC: spawn
+    loop up to 3 rounds
+        TL->>AC: nodeId
+        AC-->>TL: audit report
+        opt ❌ fail
+            TL->>IC: audit report
+            IC-->>TL: ✅ fixed
+        end
+    end
+    TL-->>U: 🎉 done
 ```
 
 1. Team Lead: **figma-to-code** collects project context, manages the Agent Team
