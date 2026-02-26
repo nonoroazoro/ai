@@ -1,7 +1,7 @@
 ---
 name: audit-component
 description: Audit a node by comparing Figma design with its implementation
-allowed-tools: mcp__figma-desktop__get_screenshot, mcp__figma-desktop__get_design_context, mcp__plugin_playwright_playwright__browser_navigate, mcp__plugin_playwright_playwright__browser_run_code, mcp__plugin_playwright_playwright__browser_evaluate, mcp__plugin_playwright_playwright__browser_wait_for, mcp__plugin_playwright_playwright__browser_take_screenshot
+allowed-tools: mcp__figma-desktop__get_screenshot, mcp__figma-desktop__get_design_context, mcp__plugin_playwright_playwright__browser_navigate, mcp__plugin_playwright_playwright__browser_snapshot, mcp__plugin_playwright_playwright__browser_take_screenshot, mcp__plugin_playwright_playwright__browser_evaluate, mcp__plugin_playwright_playwright__browser_wait_for
 argument-hint: <node-id> <dev-server-url>
 ---
 
@@ -14,9 +14,13 @@ Audit a node by comparing Figma design with its implementation. Stay alive to pr
 
 2. **On receiving a `nodeId` from Team Lead message, spawn prompt context, or `$ARGUMENTS`**:
 
-   1. **Get screenshots**:
-      - DESIGN screenshot: `get_screenshot` with `nodeId`
-      - IMPLEMENTATION screenshot: `browser_navigate` to devServerURL, `browser_take_screenshot` of `[data-node-id="{nodeId}"]`
+   1. **Get screenshots** (both scoped to the exact node, not the full page):
+      - DESIGN screenshot: `get_screenshot` with `nodeId`, Figma returns only that node's region
+      - IMPLEMENTATION screenshot:
+        1. `browser_navigate` to devServerURL (skip if already on the page)
+        2. `browser_snapshot` to get the accessibility tree
+        3. Find the element with `[data-node-id="{nodeId}"]` in the snapshot, get its `ref`
+        4. `browser_take_screenshot` with that `ref`, captures only that element's region
 
    2. **Compare design vs implementation**:
       - Review both screenshots, check overall visual fidelity: layout, spacing, alignment, typography, color, icon, missing elements, image, border, shadow, etc.
