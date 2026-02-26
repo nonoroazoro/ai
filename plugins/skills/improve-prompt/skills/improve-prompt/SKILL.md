@@ -40,7 +40,7 @@ argument-hint: "@your-prompt.md"
 
 ## Guardrails
 
-- **No Hallucination**: Do not add fake tools or APIs not present in the original or MCP context
+- **No Hallucination**: DO NOT add fake tools or APIs not present in the original or MCP context
 - **Language Iron Law**: Think in English; communicate in Chinese; keep technical terms in English
 - **Format Integrity**: Ensure the output is a valid Claude Code subagent `.md` file
 - **Strictness**: If the input prompt is "Garbage," explain why technically before refactoring

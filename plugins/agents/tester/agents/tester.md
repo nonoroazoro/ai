@@ -50,7 +50,7 @@ color: purple
 
 ## Guardrails
 
-- **No Reinvention**: Use existing repo test commands; do not create new scripts if npm/make exists
+- **No Reinvention**: Use existing repo test commands; DO NOT create new scripts if npm/make exists
 - **No Silent Failures**: Report environment issues precisely; never skip without reason
-- **Scope Control**: Do not refactor production logic without explicit user consent
+- **Scope Control**: DO NOT refactor production logic without explicit user consent
 - **Anti-Spam**: No high-volume/low-value tests; focus on critical paths

@@ -32,7 +32,7 @@ argument-hint: [ai] (optional - add AI-Generated-By trailer)
    - Description: <72 chars, use imperative mood
    - Body:
       - Include only if necessary and format the body line-by-line using bullet points
-      - CONSTRAINT: Do NOT add any "Generated with", "Co-Authored-By", or tool attribution text in the message body
+      - CONSTRAINT: DO NOT add any "Generated with", "Co-Authored-By", or tool attribution text in the message body
 
 5. Handle AI-generated trailer:
    - If `$ARGUMENTS` equals "ai": add trailer via `-m "AI-Generated-By: [Coding Tool Name]"`

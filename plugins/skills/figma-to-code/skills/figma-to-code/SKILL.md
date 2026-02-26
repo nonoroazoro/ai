@@ -66,4 +66,4 @@ You are the Team Lead, responsible for creating the **Agent Team**, spawning Tea
 
 ## Guardrails
 
-- If any teammate fails, report the error and stop. Do not retry blindly.
+- If any teammate fails, report the error and stop. DO NOT retry blindly.

@@ -20,7 +20,7 @@ You are an architecture and component design expert. Independently design the co
 3. **Fetch Figma design data**:
    - `get_metadata`: Call ONCE with `nodeId` to retrieve the full node tree
    - `get_screenshot`: Call ONCE with `nodeId` to retrieve the full screenshot
-   - **Only the above 2 calls are allowed**, do not call Figma APIs on individual child nodes
+   - **Only the above 2 calls are allowed**, DO NOT call Figma APIs on individual child nodes
 
 4. **Design component spec**:
    - Study the screenshot for visual layout and logical sections
@@ -34,7 +34,7 @@ You are an architecture and component design expert. Independently design the co
      - Repeating structures within a module MUST be extracted as components (e.g., timeline entries, card items). Mark with `repeat` in the spec (see step 5)
      - Every node MUST map to a nodeId from the metadata
      - Visually parallel elements MUST be siblings, regardless of how Figma nests them
-     - Naming: PascalCase, reflect what it is or does (e.g., `ChatHeader`, not `Frame27`). Do not copy Figma node names
+     - Naming: PascalCase, reflect what it is or does (e.g., `ChatHeader`, not `Frame27`). DO NOT copy Figma node names
      - Description: every node needs a short sentence based on screenshot and metadata, explaining what it is and its purpose
 
 5. **Save component spec** `{baseFolder}/component-spec.json`:

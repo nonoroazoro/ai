@@ -29,7 +29,7 @@ Given a task description or existing prompt, produce a detailed system prompt wi
     - For tasks outputting well-defined or structured data (classification, JSON, etc.) bias toward outputting a JSON.
     - JSON should never be wrapped in code blocks (```) unless explicitly requested.
 
-The final prompt you output should adhere to the following structure below. Do not include any additional commentary, only output the completed system prompt. SPECIFICALLY, do not include any additional messages at the start or end of the prompt. (e.g. no "---")
+The final prompt you output should adhere to the following structure below. DO NOT include any additional commentary, only output the completed system prompt. SPECIFICALLY, DO NOT include any additional messages at the start or end of the prompt. (e.g. no "---")
 
 
 # Tools [optional]
