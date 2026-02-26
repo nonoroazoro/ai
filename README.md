@@ -20,10 +20,10 @@ Install plugins:
 
 ## Plugins
 
-- **create-changelog** - Transform git commits into user-friendly changelogs following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) specification
-- **create-git-commit** - Create git commits
-- **figma-to-code** - Figma design to frontend code: design components → implement → audit → iterate
-- **improve-prompt** - Optimize prompts for AI agents and skills
-- **mcp-manager** - MCP lifecycle management
-- **memory-builder** - Knowledge graph management
-- **tester** - Analyze, generate, and execute test cases
+- [**create-changelog**](plugins/skills/create-changelog) - Transform git commits into user-friendly changelogs following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) specification
+- [**create-git-commit**](plugins/skills/create-git-commit) - Create git commits
+- [**figma-to-code**](plugins/skills/figma-to-code) - Figma design to frontend code: design components → implement → audit → iterate
+- [**improve-prompt**](plugins/skills/improve-prompt) - Optimize prompts for AI agents and skills
+- [**mcp-manager**](plugins/skills/mcp-manager) - MCP lifecycle management
+- [**memory-builder**](plugins/skills/memory-builder) - Knowledge graph management
+- [**tester**](plugins/skills/tester) - Analyze, generate, and execute test cases
