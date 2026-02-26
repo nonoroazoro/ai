@@ -6,10 +6,10 @@ Takes a Figma URL and turns it into working frontend code, automatically. Built 
 
 ```mermaid
 flowchart LR
-    A(Figma URL) --> B[figma-to-code\nTeam Lead]
-    B --> C[design-components\nComponent Spec]
-    C --> D[implement-components\nCode Gen]
-    D --> E[audit-component\nFidelity Check]
+    A(Figma URL) --> B[Team Lead]
+    B --> C[Design Components]
+    C --> D[Implement Components]
+    D --> E[Audit Component]
     E -- Pass --> F(Done)
     E -- Fail --> D
 ```
