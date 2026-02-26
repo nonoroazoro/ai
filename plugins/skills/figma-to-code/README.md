@@ -25,7 +25,7 @@ See the [main README](../../../README.md#installation) for installation instruct
 One command to automatically create an Agent Team and handle everything:
 
 ```bash
-/figma-to-code <figma-url> Create an Agent Team to complete the task
+/figma-to-code <figma-url>
 ```
 
 Individual skills can be run standalone for debugging or partial re-runs:
