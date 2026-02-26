@@ -4,6 +4,16 @@ Takes a Figma URL and turns it into working frontend code, automatically. Built 
 
 ## How it works
 
+```mermaid
+flowchart LR
+    A(Figma URL) --> B[figma-to-code\nTeam Lead]
+    B --> C[design-components\nComponent Spec]
+    C --> D[implement-components\nCode Gen]
+    D --> E[audit-component\nFidelity Check]
+    E -- Pass --> F(Done)
+    E -- Fail --> D
+```
+
 1. Team Lead: **figma-to-code** collects project context, orchestrates the pipeline
 2. Teammate: **design-components** decomposes the Figma design into a three-level component spec (page → module → component)
 3. Teammate: **implement-components** writes code for each node, using Figma design context as reference
