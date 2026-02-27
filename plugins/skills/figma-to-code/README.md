@@ -81,5 +81,5 @@ Individual skills can be run standalone for debugging or partial re-runs:
 
 Persisted files live in `.figma-to-code/`:
 
-- `component-spec.json` - the component tree with nodeIds and file paths
+- `component-spec.json` - the component tree
 - `component-spec-inspector.html` - open in browser to visually inspect the spec
