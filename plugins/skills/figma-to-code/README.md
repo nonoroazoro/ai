@@ -18,12 +18,14 @@ sequenceDiagram
     TL->>IC: spawn
     IC-->>TL: dev server URL
     TL->>AC: spawn
-    loop up to 3 rounds
-        TL->>AC: nodeId
-        AC-->>TL: auditResult
-        opt ❌ fail
-            TL->>IC: auditResult
-            IC-->>TL: ✅ fixed
+    loop for each nodeId
+        loop at least 3 rounds
+            TL->>AC: nodeId
+            AC-->>TL: auditResult
+            opt ❌ fail
+                TL->>IC: auditResult
+                IC-->>TL: ✅ fixed
+            end
         end
     end
     TL-->>U: 🎉 done
