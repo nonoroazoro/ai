@@ -20,7 +20,7 @@ Audit a node by comparing Figma design with its implementation. Stay alive to pr
         1. `browser_navigate` to devServerURL (skip if already on the page)
         2. `browser_snapshot` to get the accessibility tree
         3. Find the element with `[data-node-id="{nodeId}"]` in the snapshot, get its `ref`
-        4. `browser_take_screenshot` with that `ref` and a relative `filename` to keep screenshots in the Playwright output directory
+        4. `browser_take_screenshot` with that `ref`, save to `.playwright-mcp` directory
 
    2. **Compare design vs implementation**:
       - Review both screenshots, check overall visual fidelity: layout, spacing, alignment, typography, color, icon, missing elements, image, border, shadow, etc.
