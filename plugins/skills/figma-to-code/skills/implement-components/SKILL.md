@@ -5,32 +5,39 @@ allowed-tools: mcp__figma-desktop__get_design_context, mcp__figma-desktop__get_v
 argument-hint: [component-spec-file-path]
 ---
 
-Implement all nodes from the component spec, with Figma design context as reference. Stay alive for `auditResult` from the Team Lead
+Implement all nodes from the component spec, with Figma design context as reference. Stay alive for `auditResult` from the Team Lead.
 
 ## Workflow
 
-1. **Resolve params**:
+1. **Resolve Params**:
    - `componentSpec`: path to `component-spec.json`, from Team Lead message, spawn prompt context, or `$ARGUMENTS`
-   - Project context (tech stack, styling, component library, reference docs, etc.): from Team Lead message or spawn prompt context
-   - Ensure the project is ready to develop before proceeding
+   - Project context: from Team Lead message or spawn prompt context
 
-2. **Implement nodes** (leaf-first, bottom-up):
-   - For each node in the component spec:
-     - Call `get_design_context` with the node's `nodeId` to get design details
-     - Call `get_screenshot` with the node's `nodeId` as visual reference, keep it accessible throughout implementation
-     - Call `get_variable_defs` if design tokens are needed
-     - Write code following the project's conventions. Design context from Figma is the source of truth
-     - For Icons and Images: use assets from `get_design_context` directly. DO NOT import icon packages, fabricate markup, or use placeholders
+2. **Implement Nodes**:
+   - If the project lacks scaffolding, set it up based on project context before proceeding
+   - `get_variable_defs` to get design tokens
+   - For each node in the component spec, leaf-first, bottom-up:
+     - `get_design_context` with `nodeId` to get design details
+     - `get_screenshot` with `nodeId` to get visual reference
+     - Interpret Figma design context and following implementation rules below, do not copy verbatim
      - Add `data-node-id="{nodeId}"` to the root element of every page, module, and component, matching the spec
-     - Nodes with `repeat`: implement the component once, render it in a loop in the parent. Use each `repeat.nodeIds` entry as the `data-node-id` for each instance
+     - Nodes with `repeat`: implement the component once, render multiple times. Use `repeat.nodeIds` as `data-node-id` per instance
+     - For Icons and Images: use assets from `get_design_context` directly. DO NOT import icon packages, fabricate markup, or use placeholders
      - Code directory structure mirrors the component spec tree
-     - Update `filePath` in the `componentSpec` file after implementation
-   - When all nodes are done:
-     - Create an example page in `examples/` that renders all implemented nodes
-     - Start dev server and send the devServerURL to the Team Lead
 
-3. **Wait for audit results**:
-   - Stay alive after step 2, wait for `auditResult` (nodes that need fixing) from the Team Lead
+3. **Prepare for Audit**:
+   - Create an example page in `examples` directory that renders all implemented nodes
+   - Start dev server and send the devServerURL to the Team Lead
+
+4. **Wait for Audit Result**:
+   - Stay alive after step 2, wait for `auditResult` from the Team Lead
    - Apply fixes based on each node's issues, then notify Team Lead
    - DO NOT change `data-node-id` attributes during fixes
-   - DO NOT exit until the Team Lead sends a shutdown request
+
+## Implementation Rules
+
+- Follow project context from Team Lead (tech stack, styling, component library, reference docs, etc.)
+- Reuse components from the project if possible
+- Map Figma design tokens (colors, spacing, typography, etc.) to project's token system, never hardcode values that exist as tokens
+- Avoid inline styles unless required for dynamic values
+- Place components in the appropriate project directory, match existing export patterns

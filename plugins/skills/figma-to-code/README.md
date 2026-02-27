@@ -20,9 +20,9 @@ sequenceDiagram
     TL->>AC: spawn
     loop up to 3 rounds
         TL->>AC: nodeId
-        AC-->>TL: audit report
+        AC-->>TL: auditResult
         opt ❌ fail
-            TL->>IC: audit report
+            TL->>IC: auditResult
             IC-->>TL: ✅ fixed
         end
     end
@@ -43,13 +43,13 @@ sequenceDiagram
 3. Teammate: **implement-components** implements code based on `component-spec.json`
    - Scaffold the project if needed
    - Implement each node bottom-up (component → module → page), tag root elements with `data-node-id` for audit targeting
-   - Receive `audit report` from Team Lead and fix issues accordingly
+   - Receive `auditResult` from Team Lead and fix issues accordingly
 
 4. Teammate: **audit-component** receives a `nodeId` from Team Lead, compares its Figma design against the running implementation
    - Visual comparison: Figma node screenshot vs Playwright element screenshot, both located by `node-id`
    - Style comparison: Figma node design context vs Playwright element `getComputedStyle()` on layout, spacing, typography, color, icons, border, shadow, etc.
    - Scoring: `1-10` with tolerances (font-size +-1px, color delta <= 10 RGB, spacing +-2px, ...), pass if `>= 8`
-   - Output `audit report` to Team Lead: nodeId, score, pass/fail, issues list (expected vs actual)
+   - Output `auditResult` to Team Lead: nodeId, score, pass/fail, issues list (expected vs actual)
 
 ## Installation
 
@@ -83,5 +83,3 @@ Persisted files live in `.figma-to-code/`:
 
 - `component-spec.json` - the component tree with nodeIds and file paths
 - `component-spec-inspector.html` - open in browser to visually inspect the spec
-
-Everything else (Figma data, audit results) lives in agent memory.

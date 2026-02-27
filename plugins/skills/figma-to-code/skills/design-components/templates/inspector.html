@@ -171,7 +171,7 @@
       {
         for (const n of nodes)
         {
-          counts[n.level]++;
+          counts[n.role]++;
           if (n.children) countNodes(n.children);
         }
       }
@@ -197,10 +197,17 @@
           };
           row.appendChild(toggle);
         }
+        else
+        {
+          const spacer = document.createElement('span');
+          spacer.style.width = '18px';
+          spacer.style.display = 'inline-block';
+          row.appendChild(spacer);
+        }
 
         const badge = document.createElement('span');
-        badge.className = `badge badge-${node.level}`;
-        badge.textContent = node.level;
+        badge.className = `badge badge-${node.role}`;
+        badge.textContent = node.role;
         row.appendChild(badge);
 
         const name = document.createElement('span');

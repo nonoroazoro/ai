@@ -4,7 +4,7 @@ description: Figma design to frontend code using Claude Code Agent Teams. When t
 argument-hint: <figma-url>
 ---
 
-You are the Team Lead, responsible for creating the **Agent Team**, spawning Teammates, and orchestrating the workflow
+You are the Team Lead, responsible for creating the **Agent Team**, spawning Teammates, and orchestrating the workflow.
 
 ## Workflow
 
@@ -12,13 +12,13 @@ You are the Team Lead, responsible for creating the **Agent Team**, spawning Tea
    - If `$ARGUMENTS` contains a valid Figma URL, use it as `figmaURL`
    - Otherwise, ask the user to provide one
 
-2. **Gather project context**:
+2. **Gather Project Context**:
    - Read `package.json` to infer what you can, present the result to the user for confirmation
    - For anything that can't be inferred, ask the user using selection prompts:
-     - Tech stack: `React` / `Vue` / `Svelte` / other
-     - Build tool: `Vite` / `Webpack` / `Rspack` / other
-     - Styling: `Tailwind` / `CSS Modules` / `CSS-in-JS` / plain CSS / other
+     - Tech stack: `React` / `Vue` / `Svelte` / other / none
+     - Styling: `Tailwind` / `CSS Modules` / `CSS-in-JS` / plain CSS / other / none
      - Component library: `Arco Design` / `Ant Design` / `MUI` / other / none
+     - Build tool: `Vite` / `Webpack` / `Rspack` / other
      - Testing tool: `Vitest` / `Jest` / other / none
      - Reference docs: project conventions, design docs, etc. (optional)
 
@@ -28,15 +28,14 @@ You are the Team Lead, responsible for creating the **Agent Team**, spawning Tea
 
 4. **Phase 1 - Design Components**:
    - Spawn a teammate named `design-components` with prompt:
-     > Run the `/figma-to-code:design-components` skill.
-     > figmaURL: {figmaURL}
+     > Run the `/figma-to-code:design-components {figmaURL}` skill.
      > baseFolder: {baseFolder}
    - Wait for `design-components` to finish, then verify `{baseFolder}/component-spec.json` exists
 
 5. **Phase 2 - Implement Components**:
    - Spawn a teammate named `implement-components` with prompt:
      > Run the `/figma-to-code:implement-components {baseFolder}/component-spec.json` skill.
-     > {projectContext}
+     > Project Context: {Project Context}
    - Wait for devServerURL from `implement-components`
 
 6. **Phase 3 - Audit and Fix**:
