@@ -24,7 +24,7 @@ argument-hint: [component-spec-file-path]
      - Code directory structure MUST mirrors the `componentSpec` hierarchy
 
 3. **Prepare for Audit**:
-   - Create an example page in `examples` directory that renders all implemented nodes
+   - Create an example page in `./examples` directory that renders all implemented nodes
    - Start dev server by npm script, send the `devServerURL` to the Team Lead
 
 4. **Wait for Audit Results**:
