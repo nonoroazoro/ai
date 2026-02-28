@@ -18,10 +18,10 @@ argument-hint: [component-spec-file-path]
      - `get_variable_defs` with `nodeId` to get design tokens (e.g., primary-500, primary-hover)
      - `get_screenshot` with `nodeId` to get visual reference
      - Treat Figma design context as the source of truth, follow implementation rules for code style
-     - When assets are needed (images, icons, SVGs, etc.), download them directly from Figma, never fabricate or use placeholders
+     - Download required assets (images, icons, SVGs) to project local files from Figma, never fabricate or reference Figma URL
      - Add `data-node-id` to the root element of every page, module, and component: use `nodeId` by default, `repeat.nodeIds` for repeated nodes
      - Nodes with `repeat`: implement once, render `repeat.count` times
-     - Code structure mirrors the `componentSpec` hierarchy
+     - Code directory structure MUST mirrors the `componentSpec` hierarchy
 
 3. **Prepare for Audit**:
    - Create an example page in `examples` directory that renders all implemented nodes
@@ -35,6 +35,6 @@ argument-hint: [component-spec-file-path]
 
 - Follow `projectContext` (tech stack, styling, component library, reference docs, etc.)
 - Reuse existing project components when possible
+- Match existing project directory structure and export patterns
 - Map Figma design tokens to project's token system, never hardcode token values
 - Avoid inline styles unless required for dynamic values
-- Match existing directory structure and export patterns
