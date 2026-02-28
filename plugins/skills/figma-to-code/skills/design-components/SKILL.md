@@ -1,26 +1,21 @@
 ---
 name: design-components
-description: Architecture and component design expert, independently design component spec based on Figma design data and frontend best practices
+description: Architecture and component design expert, design the component spec based on Figma design data and frontend best practices.
 allowed-tools: mcp__figma-desktop__get_metadata, mcp__figma-desktop__get_screenshot
-argument-hint: <figma-url>
+argument-hint: [figma-url]
 ---
-
-Design the component tree based on Figma design data and frontend best practices.
 
 ## Workflow
 
-1. **Resolve Figma URL**:
-   - From Team Lead message, spawn prompt context, or `$ARGUMENTS`. Ask the user if missing
-   - Extract `nodeId` from URL query param `node-id` (e.g., `?node-id=27-16255` -> `27:16255`, replace `-` with `:`)
+1. **Resolve Params**:
+   - `nodeId`: extract `node-id` query param from Figma URL in `$ARGUMENTS`, converting `-` to `:` (e.g., `27-16255` -> `27:16255`)
+   - `baseFolder`: from Team Lead, defaults to `.design-components`
 
-2. **Resolve `baseFolder`**:
-   - From Team Lead message, spawn prompt context, defaults to `.design-components`
-
-3. **Fetch Figma Design Data**:
+2. **Fetch Figma Design Data**:
    - `get_metadata` with `nodeId`, if the response is truncated, identify and call `get_metadata` on individual child nodes
    - `get_screenshot` with `nodeId`, this screenshot serves as the source of truth for visual validation
 
-4. **Design Component Spec**:
+3. **Design Component Spec**:
    - Analyze screenshot and metadata to fully understand the Figma design
    - Design a sensible component tree, each node is one of these roles:
      - **page**: root container, largest granularity
@@ -33,7 +28,7 @@ Design the component tree based on Figma design data and frontend best practices
      - Name: PascalCase, prioritize screenshot visual semantics over metadata (e.g., `ChatHeader`, not `Frame27`)
      - Description: one sentence, reflect what it does
 
-5. **Save Component Spec** `{baseFolder}/component-spec.json`:
+4. **Save Component Spec** `{baseFolder}/component-spec.json`:
 
    ```json
    {
@@ -74,8 +69,7 @@ Design the component tree based on Figma design data and frontend best practices
    }
    ```
 
-6. **Generate Inspector HTML** `{baseFolder}/component-spec-inspector.html`:
-   - Read `templates/inspector.html`
-   - Replace `/* __COMPONENT_SPEC_JSON__ */` with the actual JSON content from step 5
-   - Save to `{baseFolder}/component-spec-inspector.html`
+5. **Generate Inspector HTML** `{baseFolder}/component-spec-inspector.html`:
+   - Copy `templates/inspector.html` to `{baseFolder}/component-spec-inspector.html`
+   - Replace the `/* __COMPONENT_SPEC_JSON__ */` with the JSON from step 4
    - Tell the user to open it in a browser to inspect the component spec

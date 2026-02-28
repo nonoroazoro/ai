@@ -1,26 +1,25 @@
 ---
 name: audit-component
-description: Audit a node by comparing Figma design with its implementation
-allowed-tools: mcp__figma-desktop__get_screenshot, mcp__figma-desktop__get_design_context, mcp__plugin_playwright_playwright__browser_navigate, mcp__plugin_playwright_playwright__browser_snapshot, mcp__plugin_playwright_playwright__browser_take_screenshot, mcp__plugin_playwright_playwright__browser_evaluate, mcp__plugin_playwright_playwright__browser_wait_for, mcp__plugin_playwright_playwright__browser_hover
-argument-hint: <node-id> <dev-server-url>
+description: Audit a node by comparing Figma design with its implementation, report audit result
+allowed-tools: mcp__figma-desktop__get_screenshot, mcp__figma-desktop__get_design_context, mcp__figma-desktop__get_metadata, mcp__plugin_playwright_playwright__browser_navigate, mcp__plugin_playwright_playwright__browser_snapshot, mcp__plugin_playwright_playwright__browser_take_screenshot, mcp__plugin_playwright_playwright__browser_evaluate, mcp__plugin_playwright_playwright__browser_wait_for, mcp__plugin_playwright_playwright__browser_hover
+argument-hint: [node-id] [dev-server-url]
 ---
-
-Audit a node by comparing Figma design with its implementation.
 
 ## Workflow
 
-1. **Resolve `devServerURL`**:
-   - From Team Lead message, spawn prompt context, or `$ARGUMENTS`
+1. **Resolve Params**:
+   - `devServerURL`: from Team Lead or `$ARGUMENTS`
 
-2. **On receiving a `nodeId` from Team Lead message, spawn prompt context, or `$ARGUMENTS`**:
+2. **On receiving `nodeId` from Team Lead or `$ARGUMENTS`** :
 
-   1. **Get Screenshots**:
-      - DESIGN screenshot: `get_screenshot` with `nodeId`, Figma returns only that node's region
+   1. **Get Node-Level Screenshots** :
+      - DESIGN screenshot: `get_screenshot` with `nodeId` to get node-level screenshot
       - IMPLEMENTATION screenshot:
-        1. `browser_navigate` to devServerURL (skip if already on the page)
+        1. `browser_navigate` to `devServerURL` if not already there
         2. `browser_snapshot` to get the accessibility tree
-        3. Find the element with `[data-node-id="{nodeId}"]` in the snapshot, get its `ref`
-        4. `browser_take_screenshot` with that `ref`, save to `.playwright-mcp` directory
+        3. Precisely search the `[data-node-id="{nodeId}"]` in the snapshot, extract the corresponding `ref`
+        4. `browser_take_screenshot` with this `ref` to get node-level screenshot, save to `.playwright-mcp` directory
+        5. Reuse this `ref` in subsequent checks
 
    2. **Visual Check**:
       - Review both screenshots side by side
@@ -29,7 +28,7 @@ Audit a node by comparing Figma design with its implementation.
 
    3. **Style Check**:
       - `get_design_context` with `nodeId` to get design context
-      - `browser_evaluate` to run `getComputedStyle()` on `[data-node-id="{nodeId}"]` to get implementation context
+      - `browser_evaluate` to run `getComputedStyle()` on `data-node-id="{nodeId}"` element to get implementation context
       - Compare with tolerance:
 
         | Property | Tolerance |
@@ -46,8 +45,15 @@ Audit a node by comparing Figma design with its implementation.
         | box-shadow | visual match |
 
    4. **Interaction Check**:
-      - If Figma design includes hover variant: `browser_hover` on the element, `browser_take_screenshot` to capture hover state, compare against design
-      - If the element has `disabled` or `aria-disabled` attribute: `browser_take_screenshot` to capture disabled state, compare against design
+      - `get_metadata` with `nodeId` to check for interaction variants (hover, disabled, etc.)
+      - If hover variant exists:
+         - `browser_hover` on the `ref`
+         - `browser_take_screenshot` with `ref`
+         - Check if hover state works as designed
+      - If disabled variant exists:
+         - `browser_evaluate` to check `disabled`/`aria-disabled` on the `ref`
+         - `browser_take_screenshot` with `ref`
+         - Check if disabled state works as designed
 
    5. **Report `auditResult`** to the Team Lead:
       - `nodeId`: the node audited
@@ -59,8 +65,8 @@ Audit a node by comparing Figma design with its implementation.
         - `expected`: design value or expected behavior
         - `actual`: implementation value or actual behavior
 
-   6. Stay alive and wait for the next `nodeId`, DO NOT exit
+   6. Wait for next `nodeId`
 
 ## Guardrails
 
-- DO NOT modify any code or files
+- DO NOT modify any files

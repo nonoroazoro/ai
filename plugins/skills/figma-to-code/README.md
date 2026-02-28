@@ -18,14 +18,14 @@ sequenceDiagram
     TL->>IC: spawn
     IC-->>TL: dev server URL
     TL->>AC: spawn
-    loop for each nodeId
-        loop at least 3 rounds
+    loop up to 3 rounds
+        loop for each pendingNodeId
             TL->>AC: nodeId
             AC-->>TL: auditResult
-            opt ❌ fail
-                TL->>IC: auditResult
-                IC-->>TL: ✅ fixed
-            end
+        end
+        alt ❌ failed
+            TL->>IC: auditResults
+            IC-->>TL: ✅ fixed
         end
     end
     TL-->>U: 🎉 done
@@ -45,13 +45,14 @@ sequenceDiagram
 3. Teammate: **implement-components** implements code based on `component-spec.json`
    - Scaffold the project if needed
    - Implement each node bottom-up (component → module → page), tag root elements with `data-node-id` for audit targeting
-   - Receive `auditResult` from Team Lead and fix issues accordingly
+   - Receive `auditResults` from Team Lead and fix issues accordingly
 
 4. Teammate: **audit-component** receives a `nodeId` from Team Lead, compares its Figma design against the running implementation
    - Visual comparison: Figma node screenshot vs Playwright element screenshot, both located by `node-id`
    - Style comparison: Figma node design context vs Playwright element `getComputedStyle()` on layout, spacing, typography, color, icons, border, shadow, etc.
+   - Interaction check: verify hover/disabled variants if present in Figma metadata
    - Scoring: `1-10` with tolerances (font-size +-1px, color delta <= 10 RGB, spacing +-2px, ...), pass if `>= 8`
-   - Output `auditResult` to Team Lead: nodeId, score, pass/fail, issues list (expected vs actual)
+   - Output `auditResult` to Team Lead: nodeId, category, score, pass/fail, issues list (expected vs actual)
 
 ## Installation
 
