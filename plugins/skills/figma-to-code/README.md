@@ -69,16 +69,16 @@ See the [main README](../../../README.md#installation) for installation instruct
 One command to automatically create an Agent Team and handle everything:
 
 ```bash
-/figma-to-code <figma-url>
+/figma-to-code [figma-url]
 ```
 
 Individual skills can be run standalone for debugging or partial re-runs:
 
 | Skill | What it does |
 |-------|--------------|
-| `/figma-to-code:design-components <figma-url>` | Component decomposition |
+| `/figma-to-code:design-components [figma-url]` | Component decomposition |
 | `/figma-to-code:implement-components [spec-path]` | Code generation |
-| `/figma-to-code:audit-component <node-id> <dev-server-url>` | Audit a single node against its Figma design |
+| `/figma-to-code:audit-component [node-id] [dev-server-url]` | Audit a single node against its Figma design |
 
 ## Data
 
@@ -86,3 +86,41 @@ Persisted files live in `.figma-to-code/`:
 
 - `component-spec.json` - the component tree
 - `component-spec-inspector.html` - open in browser to visually inspect the spec
+
+## Claude Code Permissions
+
+It's recommended to add the following settings to your `~/.claude/settings.json` to avoid endless permission prompts:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat*)",
+      "Bash(git branch*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git status*)",
+      "Bash(grep*)",
+      "Bash(ls*)",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(pnpm run*)",
+      "Bash(pnpm install*)",
+      "Bash(sleep *)",
+      "Bash(tree*)",
+      "Bash(which*)",
+      "Glob",
+      "Grep",
+      "Read",
+      "SendMessage",
+      "Task",
+      "WebFetch",
+      "WebSearch",
+      "Write",
+      "mcp__figma-desktop__*",
+      "mcp__ide__*",
+      "mcp__plugin_playwright_playwright__*"
+    ]
+  }
+}
+```
