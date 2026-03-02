@@ -22,9 +22,9 @@ argument-hint: [node-id] [dev-server-url]
         5. Reuse this `ref` in subsequent checks
 
    2. **Visual Check**:
-      - Review both screenshots side by side
-      - Check overall visual fidelity: layout, spacing, alignment, typography, color, icon, image, border, shadow, missing elements, etc.
-      - Assets must render correctly, no placeholders or broken images
+      - Compare design and implementation screenshots side by side
+      - Check visual fidelity: layout, spacing, alignment, typography, colors, icons, images, borders, shadows
+      - Check visual artifacts: missing elements, black spots, overflow bleeding, stretched or distorted icons, broken images
 
    3. **Style Check**:
       - `get_design_context` with `nodeId` to get design context
