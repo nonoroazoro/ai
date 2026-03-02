@@ -13,7 +13,7 @@ argument-hint: [component-spec-file-path]
 
 2. **Bootstrap**:
    - If needed, set up a minimal project based on `projectContext`
-   - DO NOT use third-party scaffolding tools
+   - Write by hand, DO NOT use third-party scaffolding CLI tools
 
 3. **Implementation**
    - Implement in strict order:
