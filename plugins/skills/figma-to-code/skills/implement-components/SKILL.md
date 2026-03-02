@@ -21,15 +21,27 @@ argument-hint: [component-spec-file-path]
       - Complete one node before starting the next
       - Assemble bottom-up: implement all children before their parent
    - For each node:
-     - `get_design_context` with `nodeId` to get design details (typically React + Tailwind code snippets)
+     - `get_design_context` with `nodeId` to get design context (typically React + Tailwind code snippets)
      - `get_variable_defs` with `nodeId` to get design tokens (e.g., primary-500, primary-hover)
      - `get_screenshot` with `nodeId` to get visual reference
      - Treat Figma design context as the source of truth: exact dimensions, spacing, font sizes, icon sizes, etc.
-     - Icons: embed SVG from `get_design_context` as inline `<svg>` or framework SVG components
-     - Images: download from `get_design_context` and save to project files
+     - Handle Figma assets:
+       - Download all Figma assets (SVG, PNG, JPG) to local assets directory, do not modify downloaded content
+       - Replace all Figma-hosted URLs (e.g. `http://localhost:3845/assets/...`) with local imports
+       - Preserve original Figma DOM structure to avoid rendering issues, e.g.:
+         ```javascript
+         {/* ✅ This structure is what Figma gives you, keep it */}
+         <div className="absolute inset-[X%_Y%]">
+           <img src={icon} className="absolute block max-w-none size-full" />
+         </div>
+
+         {/* ❌ DO NOT flatten into this */}
+         <img src={icon} className="absolute inset-[X%_Y%] size-full" />
+         ```
      - Add `data-node-id` to the root element of every node, use `nodeId` by default, `repeat.nodeIds` for repeated nodes
      - Nodes with `repeat`: implement once, render `repeat.count` times
-     - Implement node-local interactions (toggles, form validation, etc.)
+     - Implement node's internal interactions (hover, toggles, form validation, etc.)
+     - Code directory structure MUST mirror the `componentSpec` hierarchy
    - After all nodes are implemented, wire up cross-node interactions (navigation, routing, shared state, etc.)
 
 4. **Prepare for Audit**:
@@ -43,9 +55,7 @@ argument-hint: [component-spec-file-path]
 ## Implementation Rules
 
 - Follow `projectContext` (tech stack, styling, component library, reference docs, etc.)
-- Code directory structure MUST mirror the `componentSpec` hierarchy
 - Reuse existing project components when possible
 - Match existing project directory structure and export patterns
 - Map Figma design tokens to project's token system, never hardcode token values
 - Avoid inline styles unless required for dynamic values
-- All used assets (icons, images, etc.) must be embedded or saved in project files, DO NOT reference any Figma localhost URL
