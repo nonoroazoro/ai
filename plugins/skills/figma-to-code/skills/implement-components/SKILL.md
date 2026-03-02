@@ -25,7 +25,8 @@ argument-hint: [component-spec-file-path]
      - `get_variable_defs` with `nodeId` to get design tokens (e.g., primary-500, primary-hover)
      - `get_screenshot` with `nodeId` to get visual reference
      - Treat Figma design context as the source of truth: exact dimensions, spacing, font sizes, icon sizes, etc.
-     - Icons and Images: use assets from `get_design_context` directly, prefer inline SVG. DO NOT reference Figma URL or fabricate markup
+     - Icons: embed SVG from `get_design_context` as inline `<svg>` or framework SVG components
+     - Images: download from `get_design_context` and save to project files
      - Add `data-node-id` to the root element of every node, use `nodeId` by default, `repeat.nodeIds` for repeated nodes
      - Nodes with `repeat`: implement once, render `repeat.count` times
      - Implement node-local interactions (toggles, form validation, etc.)
@@ -47,3 +48,4 @@ argument-hint: [component-spec-file-path]
 - Match existing project directory structure and export patterns
 - Map Figma design tokens to project's token system, never hardcode token values
 - Avoid inline styles unless required for dynamic values
+- All used assets (icons, images, etc.) must be embedded or saved in project files, DO NOT reference any Figma localhost URL
