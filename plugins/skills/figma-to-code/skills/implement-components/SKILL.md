@@ -11,29 +11,38 @@ argument-hint: [component-spec-file-path]
    - `componentSpec`: from Team Lead or `$ARGUMENTS`
    - `projectContext`: from Team Lead
 
-2. **Implement Nodes**:
-   - Set up a minimal project if needed: based on `projectContext`, DO NOT use third-party scaffolding tools
-   - Bottom-up, leaf-first, for each node in `componentSpec`:
+2. **Bootstrap**:
+   - If needed, set up a minimal project based on `projectContext`
+   - DO NOT use third-party scaffolding tools
+
+3. **Implementation**
+   - Implement in strict order:
+      - Components → Modules → Pages
+      - Complete one node before starting the next
+      - Assemble bottom-up: implement all children before their parent
+   - For each node:
      - `get_design_context` with `nodeId` to get design details (typically React + Tailwind code snippets)
      - `get_variable_defs` with `nodeId` to get design tokens (e.g., primary-500, primary-hover)
      - `get_screenshot` with `nodeId` to get visual reference
-     - Treat Figma design context as the source of truth, follow implementation rules for code style
-     - Download required assets (images, icons, SVGs) to project local files from Figma, never fabricate or reference Figma URL
-     - Add `data-node-id` to the root element of every page, module, and component: use `nodeId` by default, `repeat.nodeIds` for repeated nodes
+     - Treat Figma design context as the source of truth: exact dimensions, spacing, font sizes, icon sizes, etc.
+     - Icons and Images: use assets from `get_design_context` directly, prefer inline SVG. DO NOT reference Figma URL or fabricate markup
+     - Add `data-node-id` to the root element of every node, use `nodeId` by default, `repeat.nodeIds` for repeated nodes
      - Nodes with `repeat`: implement once, render `repeat.count` times
-     - Code directory structure MUST mirrors the `componentSpec` hierarchy
+     - Implement node-local interactions (toggles, form validation, etc.)
+   - After all nodes are implemented, wire up cross-node interactions (navigation, routing, shared state, etc.)
 
-3. **Prepare for Audit**:
+4. **Prepare for Audit**:
    - Create an example page in `./examples` directory that renders all implemented nodes
    - Start dev server by npm script, send the `devServerURL` to the Team Lead
 
-4. **Wait for Audit Results**:
+5. **Wait for Audit Results**:
    - On receiving `auditResults` from Team Lead, apply fixes based on it and report back
    - Never change `data-node-id` during fixes
 
 ## Implementation Rules
 
 - Follow `projectContext` (tech stack, styling, component library, reference docs, etc.)
+- Code directory structure MUST mirror the `componentSpec` hierarchy
 - Reuse existing project components when possible
 - Match existing project directory structure and export patterns
 - Map Figma design tokens to project's token system, never hardcode token values
