@@ -1,7 +1,7 @@
 {
   "name": "figma-to-code",
   "description": "Figma design to frontend code: design components → implement → audit → iterate",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": {
     "name": "nonoroazoro",
     "url": "https://github.com/nonoroazoro"
