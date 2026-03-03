@@ -29,7 +29,6 @@ argument-hint: [figma-url]
      - Description: one sentence, reflect what it does
 
 4. **Save Component Spec** `{baseFolder}/component-spec.json`:
-
    ```json
    {
      "pages": [
@@ -72,4 +71,6 @@ argument-hint: [figma-url]
 5. **Generate Inspector HTML** `{baseFolder}/component-spec-inspector.html`:
    - Copy `templates/inspector.html` to `{baseFolder}/component-spec-inspector.html`
    - Replace the `/* __COMPONENT_SPEC_JSON__ */` with the JSON from step 4
-   - Tell the user to open it in a browser to inspect the component spec
+   - Inform user to open in browser for inspection
+
+6. **Complete**: Send success message to Team Lead and exit
