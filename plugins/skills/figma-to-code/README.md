@@ -121,7 +121,7 @@ It's recommended to add the following settings to your `~/.claude/settings.json`
       "Write",
       "mcp__figma-desktop__*",
       "mcp__ide__*",
-      "mcp__plugin_playwright_playwright__*"
+      "mcp__playwright__*"
     ]
   }
 }

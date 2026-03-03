@@ -1,7 +1,7 @@
 ---
 name: audit-component
 description: Audit a node by comparing Figma design with its implementation, report audit result
-allowed-tools: mcp__figma-desktop__get_screenshot, mcp__figma-desktop__get_design_context, mcp__figma-desktop__get_metadata, mcp__plugin_playwright_playwright__browser_navigate, mcp__plugin_playwright_playwright__browser_snapshot, mcp__plugin_playwright_playwright__browser_take_screenshot, mcp__plugin_playwright_playwright__browser_evaluate, mcp__plugin_playwright_playwright__browser_wait_for, mcp__plugin_playwright_playwright__browser_hover
+allowed-tools: mcp__figma-desktop__get_design_context, mcp__figma-desktop__get_metadata, mcp__figma-desktop__get_screenshot, mcp__playwright__*
 argument-hint: [node-id] [dev-server-url]
 ---
 

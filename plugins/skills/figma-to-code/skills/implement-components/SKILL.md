@@ -1,7 +1,7 @@
 ---
 name: implement-components
 description: Implement all nodes from component spec with Figma design context, fix code based on audit results
-allowed-tools: mcp__figma-desktop__get_design_context, mcp__figma-desktop__get_variable_defs, mcp__figma-desktop__get_screenshot
+allowed-tools: mcp__figma-desktop__get_design_context, mcp__figma-desktop__get_screenshot, mcp__figma-desktop__get_variable_defs
 argument-hint: [component-spec-file-path]
 ---
 
