@@ -20,7 +20,7 @@ argument-hint: [component-spec-file-path]
       - Components → Modules → Pages
       - Complete one node before starting the next
       - Assemble bottom-up: implement all children before their parent
-   - For each node:
+   - For each node in `componentSpec`:
      - `get_design_context` with `nodeId` to get design context (typically React + Tailwind code snippets)
      - `get_variable_defs` with `nodeId` to get design tokens (e.g., primary-500, primary-hover)
      - `get_screenshot` with `nodeId` to get visual reference
