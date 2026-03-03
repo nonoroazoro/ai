@@ -29,7 +29,7 @@ You are the Team Lead. Set up an Agent Team with specialized Teammates and orche
    - Spawn a teammate named `design-components` with prompt:
      > Run the `/figma-to-code:design-components {figmaURL}` skill.
      > baseFolder: {baseFolder}
-   - Wait for `design-components` to finish, then verify `{baseFolder}/component-spec.json` exists
+   - Wait for `design-components` to reply, then verify `{baseFolder}/component-spec.json`
 
 5. **Phase 2 - Implement Components**:
    - Spawn a teammate named `implement-components` with prompt:
@@ -43,9 +43,12 @@ You are the Team Lead. Set up an Agent Team with specialized Teammates and orche
      > devServerURL: {devServerURL}
    - Read `{baseFolder}/component-spec.json` and collect all nodes as `pendingNodeIds` (bottom-up: components → modules → pages)
    - Loop up to 3 rounds of audit-fix until all nodes pass:
-     1. **Audit**: for each `nodeId` in `pendingNodeIds`, send to `audit-component`, wait for `auditResult`, collect failed ones into `auditResults`
-     2. If `auditResults` is empty, exit loop
-     3. **Fix**: send `auditResults` to `implement-components`, wait for fix confirmation
+     1. Loop through `pendingNodeIds`:
+       - Send `nodeId` to `audit-component`
+       - Wait for `auditResult` before sending the next `nodeId`
+       - Collect failed `auditResult` to `auditResults`
+     2. If `auditResults` is empty, exit audit-fix loop
+     3. Send `auditResults` to `implement-components`, wait for fix confirmation
      4. Set `pendingNodeIds` to the `nodeId`s from `auditResults` for next round
 
 7. **Phase 4 - Done**:
