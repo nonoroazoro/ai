@@ -10,9 +10,9 @@ argument-hint: [node-id] [dev-server-url]
 1. **Resolve Params**:
    - `devServerURL`: from Team Lead or `$ARGUMENTS`
 
-2. **On receiving `nodeId` from Team Lead or `$ARGUMENTS`** :
+2. **On receiving `nodeId` from Team Lead or `$ARGUMENTS`**:
 
-   1. **Get Node-Level Screenshots** :
+   1. **Get Node-Level Screenshots**:
       - DESIGN screenshot: `get_screenshot` with `nodeId` to get node-level screenshot
       - IMPLEMENTATION screenshot:
         1. `browser_navigate` to `devServerURL` if not already there
