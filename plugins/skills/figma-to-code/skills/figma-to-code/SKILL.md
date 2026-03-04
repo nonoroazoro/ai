@@ -21,23 +21,28 @@ You are the Team Lead. Set up an Agent Team with specialized Teammates and orche
      - Styling: `Tailwind` / `Less` / other / skip
      - Docs: project conventions, plan docs, etc. (optional)
 
-3. **Setup**:
+3. **Configure Audit-Fix**:
+   - Ask the user whether to enable the audit-fix loop (default to `enabled`)
+   - Description: Compare implementation against design and auto-fix issues, costs more tokens
+   - Store choice as `{enableAudit}`
+
+4. **Setup**:
    - Set `{baseFolder}` to `.figma-to-code`
    - Create the agent team named `figma-to-code`
 
-4. **Phase 1 - Design Components**:
+5. **Phase 1 - Design Components**:
    - Spawn a teammate named `design-components` with prompt:
      > Run the `/figma-to-code:design-components {figmaURL}` skill.
      > baseFolder: {baseFolder}
    - Wait for `design-components` to reply, then verify `{baseFolder}/component-spec.json`
 
-5. **Phase 2 - Implement Components**:
+6. **Phase 2 - Implement Components**:
    - Spawn a teammate named `implement-components` with prompt:
      > Run the `/figma-to-code:implement-components {baseFolder}/component-spec.json` skill.
      > projectContext: {Project Context}
    - Wait for devServerURL from `implement-components`
 
-6. **Phase 3 - Audit and Fix**:
+7. **Phase 3 - Audit and Fix (Skip if `{enableAudit}` is false)**:
    - Spawn a teammate named `audit-component` with prompt:
      > Run the `/figma-to-code:audit-component` skill.
      > devServerURL: {devServerURL}
@@ -51,16 +56,15 @@ You are the Team Lead. Set up an Agent Team with specialized Teammates and orche
      3. Send `auditResults` to `implement-components`, wait for fix confirmation
      4. Set `pendingNodeIds` to the `nodeId`s from `auditResults` for next round
 
-7. **Phase 4 - Done**:
-   - Summarize the final result to the user:
-     - List all nodes and their audit status/score
-     - Highlight any nodes that didn't reach target quality within 3 rounds
+8. **Phase 4 - Done**:
+   - Summarize the final result
+     - List all nodes and their audit status/score if audit-fix was enabled
    - Clean up the agent team
 
 ## Guardrails
 
 - You are an orchestrator, DO NOT write code or call tools
-- DO NOT skip any phase or audit-fix rounds
+- DO NOT skip any phase or audit-fix rounds unless the user opted out of audit-fix
 - Be patient, wait for teammates to reply. Only poll for status when absolutely necessary
 - If a needed teammate is no longer running, respawn it
 - If any teammate fails, report the error and stop. DO NOT retry blindly
