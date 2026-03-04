@@ -22,9 +22,16 @@
     },
     {
       "name": "figma-to-code",
-      "description": "Figma design to frontend code: design components → implement → audit → iterate",
+      "description": "Figma design to frontend code, Agent Teams version (Recommended)",
       "category": "development",
       "source": "./plugins/skills/figma-to-code",
+      "homepage": "https://github.com/nonoroazoro/ai"
+    },
+    {
+      "name": "figma-to-code-subagents",
+      "description": "Figma design to frontend code, Subagents version",
+      "category": "development",
+      "source": "./plugins/skills/figma-to-code-subagents",
       "homepage": "https://github.com/nonoroazoro/ai"
     },
     {

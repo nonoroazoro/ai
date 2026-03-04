@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Spec Inspector</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: #0d1117;
+        color: #c9d1d9;
+        padding: 32px;
+      }
+
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        color: #e6edf3;
+      }
+
+      .tree {
+        padding-left: 0;
+      }
+
+      .tree ul {
+        padding-left: 24px;
+        border-left: 1px solid #21262d;
+        margin-left: 12px;
+      }
+
+      .node {
+        list-style: none;
+        padding: 6px 0;
+      }
+
+      .node-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        cursor: default;
+        transition: background .15s;
+      }
+
+      .node-row:hover {
+        background: #161b22;
+      }
+
+      .badge {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 10px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+      }
+
+      .badge-page {
+        background: #388bfd26;
+        color: #58a6ff;
+      }
+
+      .badge-module {
+        background: #3fb95026;
+        color: #56d364;
+      }
+
+      .badge-component {
+        background: #d2992226;
+        color: #e3b341;
+      }
+
+      .badge-repeat {
+        background: #da363326;
+        color: #f85149;
+      }
+
+      .name {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .node-id {
+        font-size: 12px;
+        color: #484f58;
+        font-family: 'SF Mono', Menlo, monospace;
+      }
+
+      .description {
+        font-size: 12px;
+        color: #8b949e;
+        font-style: italic;
+      }
+
+      .toggle {
+        width: 18px;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #484f58;
+        cursor: pointer;
+        user-select: none;
+        transition: transform .15s;
+      }
+
+      .toggle.collapsed {
+        transform: rotate(-90deg);
+      }
+
+      .children.hidden {
+        display: none;
+      }
+
+      .stats {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .stat {
+        font-size: 13px;
+        color: #8b949e;
+      }
+
+      .stat span {
+        font-weight: 600;
+      }
+
+      .stat .c-page {
+        color: #58a6ff;
+      }
+
+      .stat .c-module {
+        color: #56d364;
+      }
+
+      .stat .c-component {
+        color: #e3b341;
+      }
+
+      .error {
+        color: #f85149;
+        font-size: 14px;
+        padding: 16px;
+        background: #f8514926;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Component Spec Inspector</h1>
+    <div class="stats" id="stats"></div>
+    <ul class="tree" id="tree"></ul>
+
+    <script>
+      const counts = { page: 0, module: 0, component: 0 };
+
+      function countNodes(nodes)
+      {
+        for (const n of nodes)
+        {
+          counts[n.role]++;
+          if (n.children) countNodes(n.children);
+        }
+      }
+
+      function renderNode(node)
+      {
+        const hasChildren = node.children && node.children.length > 0;
+        const li = document.createElement('li');
+        li.className = 'node';
+
+        const row = document.createElement('div');
+        row.className = 'node-row';
+
+        if (hasChildren)
+        {
+          const toggle = document.createElement('span');
+          toggle.className = 'toggle';
+          toggle.textContent = '\u25BC';
+          toggle.onclick = () =>
+          {
+            toggle.classList.toggle('collapsed');
+            li.querySelector('.children').classList.toggle('hidden');
+          };
+          row.appendChild(toggle);
+        }
+        else
+        {
+          const spacer = document.createElement('span');
+          spacer.style.width = '18px';
+          spacer.style.display = 'inline-block';
+          row.appendChild(spacer);
+        }
+
+        const badge = document.createElement('span');
+        badge.className = `badge badge-${node.role}`;
+        badge.textContent = node.role;
+        row.appendChild(badge);
+
+        const name = document.createElement('span');
+        name.className = 'name';
+        name.textContent = node.name;
+        row.appendChild(name);
+
+        const id = document.createElement('span');
+        id.className = 'node-id';
+        id.textContent = node.nodeId;
+        row.appendChild(id);
+
+        if (node.description)
+        {
+          const desc = document.createElement('span');
+          desc.className = 'description';
+          desc.textContent = node.description;
+          row.appendChild(desc);
+        }
+
+        if (node.repeat)
+        {
+          const repeat = document.createElement('span');
+          repeat.className = 'badge badge-repeat';
+          repeat.textContent = `×${node.repeat.count}`;
+          repeat.title = node.repeat.nodeIds.join(', ');
+          row.appendChild(repeat);
+        }
+
+        li.appendChild(row);
+
+        if (hasChildren)
+        {
+          const ul = document.createElement('ul');
+          ul.className = 'children';
+          for (const child of node.children) ul.appendChild(renderNode(child));
+          li.appendChild(ul);
+        }
+
+        return li;
+      }
+
+      function render(spec)
+      {
+        countNodes(spec.pages);
+        document.getElementById('stats').innerHTML =
+          `<div class="stat"><span class="c-page">${counts.page}</span> page</div>` +
+          `<div class="stat"><span class="c-module">${counts.module}</span> modules</div>` +
+          `<div class="stat"><span class="c-component">${counts.component}</span> components</div>`;
+
+        const tree = document.getElementById('tree');
+        for (const node of spec.pages) tree.appendChild(renderNode(node));
+      }
+
+      const spec = /* __COMPONENT_SPEC_JSON__ */;
+      render(spec);
+    </script>
+  </body>
+
+</html>
