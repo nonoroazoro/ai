@@ -38,7 +38,7 @@ argument-hint: [component-spec-file-path]
          {/* ❌ DO NOT flatten into this */}
          <img src={icon} className="absolute inset-[X%_Y%] size-full" />
          ```
-     - Add `data-node-id` to the root element of every node, use `nodeId` by default, `repeat.nodeIds` for repeated nodes
+     - You MUST add `data-node-id` to the root element of every node, use `nodeId` by default, `repeat.nodeIds` for repeated nodes
      - Nodes with `repeat`: implement once, render `repeat.count` times
      - Implement node's internal interactions (hover, toggles, form validation, etc.)
      - Code directory structure MUST mirror the `componentSpec` hierarchy
