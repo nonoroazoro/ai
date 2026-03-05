@@ -16,11 +16,7 @@ argument-hint: [component-spec-file-path]
    - Write by hand, DO NOT use third-party scaffolding CLI tools
 
 3. **Implementation**
-   - Implement in strict order:
-      - Components → Modules → Pages
-      - Complete one node before starting the next
-      - Assemble bottom-up: implement all children before their parent
-   - For each node in `componentSpec`:
+   - For each node in `componentSpec`, process ONE node at a time, never batch or parallelize across nodes:
      - `get_design_context` with `nodeId` to get design context (typically React + Tailwind code snippets)
      - `get_variable_defs` with `nodeId` to get design tokens (e.g., primary-500, primary-hover)
      - `get_screenshot` with `nodeId` to get visual reference
