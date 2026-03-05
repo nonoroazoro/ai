@@ -46,15 +46,13 @@ You are the Team Lead. Set up an Agent Team with specialized Teammates and orche
    - Spawn a teammate named `audit-component` with prompt:
      > Run the `/figma-to-code:audit-component` skill.
      > devServerURL: {devServerURL}
-   - Read `{baseFolder}/component-spec.json` and collect all nodes as `pendingNodeIds` (bottom-up: components → modules → pages)
-   - Loop up to 3 rounds of audit-fix until all nodes pass:
-     1. Loop through `pendingNodeIds`:
-       - Send `nodeId` to `audit-component`
-       - Wait for `auditResult` before sending the next `nodeId`
-       - Collect failed `auditResult` to `auditResults`
-     2. If `auditResults` is empty, exit audit-fix loop
-     3. Send `auditResults` to `implement-components`, wait for fix confirmation
-     4. Set `pendingNodeIds` to the `nodeId`s from `auditResults` for next round
+   - Read `{baseFolder}/component-spec.json`, collect `nodeId`s at the highest available level: `page` > `module` > `component`
+   - Loop up to 3 rounds of audit-fix:
+     1. For each top-level `nodeId`:
+        - Send `nodeId` to `audit-component`, wait for `auditResult`
+        - If failed, send `auditResult` to `implement-components`, wait for fix confirmation
+        - Only proceed to the next `nodeId` after the current one is fully resolved
+     2. If all passed this round, exit audit-fix loop
 
 8. **Phase 4 - Done**:
    - Summarize the final result
