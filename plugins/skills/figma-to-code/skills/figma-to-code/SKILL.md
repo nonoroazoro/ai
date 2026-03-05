@@ -15,7 +15,7 @@ You are the Team Lead. Set up an Agent Team with specialized Teammates and orche
 2. **Gather Project Context**:
    - Read `package.json` to infer `Project Context`
    - Default to `Vite` and `Vitest` for build and testing if not detected
-   - Ask the user for anything not inferred:
+   - For anything not inferred, you MUST ask the user by providing a list of options:
      - Framework: `React` / `Vue` / other / skip
      - Library: `Arco Design` / `Ant Design` / other / skip
      - Styling: `Tailwind` / `Less` / other / skip
