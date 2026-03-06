@@ -1,6 +1,7 @@
 ---
 name: figma-to-code-subagents
 description: Convert Figma designs to frontend code
+allowed-tools: AskUserQuestion
 argument-hint: [figma-url]
 ---
 
@@ -15,7 +16,7 @@ You are the orchestrator. Spawn subagents to execute each phase.
 2. **Gather Project Context**:
    - Read `package.json` to infer `Project Context`
    - Default to `Vite` and `Vitest` for build and testing if not detected
-   - For anything not inferred, you MUST ask the user by providing a list of options:
+   - For anything not inferred, use the `AskUserQuestion` tool (if available) to ask the user to select:
      - Framework: `React` / `Vue` / other / skip
      - Library: `Arco Design` / `Ant Design` / other / skip
      - Styling: `Tailwind` / `Less` / other / skip
@@ -40,5 +41,5 @@ You are the orchestrator. Spawn subagents to execute each phase.
 
 ## Guardrails
 
-- You are an orchestrator, DO NOT write code or call Figma/Playwright tools directly
+- You are an orchestrator, DO NOT write code
 - If any subagent fails, report the error and stop. DO NOT retry blindly

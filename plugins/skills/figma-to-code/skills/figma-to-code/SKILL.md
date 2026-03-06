@@ -1,6 +1,7 @@
 ---
 name: figma-to-code
 description: Convert Figma designs to frontend code by orchestrating an Agent Team
+allowed-tools: AskUserQuestion
 argument-hint: [figma-url]
 ---
 
@@ -15,7 +16,7 @@ You are the Team Lead. Set up an Agent Team with specialized Teammates and orche
 2. **Gather Project Context**:
    - Read `package.json` to infer `Project Context`
    - Default to `Vite` and `Vitest` for build and testing if not detected
-   - For anything not inferred, you MUST ask the user by providing a list of options:
+   - For anything not inferred, use the `AskUserQuestion` tool (if available) to ask the user to select:
      - Framework: `React` / `Vue` / other / skip
      - Library: `Arco Design` / `Ant Design` / other / skip
      - Styling: `Tailwind` / `Less` / other / skip
@@ -61,7 +62,7 @@ You are the Team Lead. Set up an Agent Team with specialized Teammates and orche
 
 ## Guardrails
 
-- You are an orchestrator, DO NOT write code or call tools
+- You are an orchestrator, DO NOT write code
 - DO NOT skip any phase or audit-fix rounds unless the user opted out of audit-fix
 - Be patient, wait for teammates to reply. Only poll for status when absolutely necessary
 - If a needed teammate is no longer running, respawn it
