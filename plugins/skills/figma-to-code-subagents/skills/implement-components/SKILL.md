@@ -16,11 +16,7 @@ argument-hint: [component-spec-file-path]
    - Write by hand, DO NOT use third-party scaffolding CLI tools
 
 3. **Implementation**
-   - Implement in strict order:
-      - Components → Modules → Pages
-      - Complete one node before starting the next
-      - Assemble bottom-up: implement all children before their parent
-   - For each node in `componentSpec`:
+   - For each node in `componentSpec`, process ONE node at a time, never batch or parallelize across nodes:
      - `get_design_context` with `nodeId` to get design context (typically React + Tailwind code snippets)
      - `get_variable_defs` with `nodeId` to get design tokens (e.g., primary-500, primary-hover)
      - `get_screenshot` with `nodeId` to get visual reference
@@ -38,7 +34,7 @@ argument-hint: [component-spec-file-path]
          {/* ❌ DO NOT flatten into this */}
          <img src={icon} className="absolute inset-[X%_Y%] size-full" />
          ```
-     - Add `data-node-id` to the root element of every node, use `nodeId` by default, `repeat.nodeIds` for repeated nodes
+     - You MUST add `data-node-id` to the root element of every node, use `nodeId` by default, `repeat.nodeIds` for repeated nodes
      - Nodes with `repeat`: implement once, render `repeat.count` times
      - Implement node's internal interactions (hover, toggles, form validation, etc.)
      - Code directory structure MUST mirror the `componentSpec` hierarchy
