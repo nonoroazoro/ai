@@ -1,7 +1,7 @@
 {
   "name": "figma-to-code-subagents",
   "description": "Figma design to frontend code, Subagents version",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "author": {
     "name": "nonoroazoro",
     "url": "https://github.com/nonoroazoro"
