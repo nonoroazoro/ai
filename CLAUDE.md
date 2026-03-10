@@ -18,6 +18,14 @@ Clean architecture, minimal design, performance first.
 - TypeScript:
   - Never use non-null assertion operator (`!`).
 
+## Search
+
+Before scraping or using MCP search tools, WebFetch `{site}/llms.txt` and locate relevant docs directly.
+
+Known `llms.txt` list:
+
+- Claude Code Docs: https://code.claude.com/docs/llms.txt
+
 ## Tools
 
 - Local first, web search as fallback. For open source repos, clone locally before searching.
