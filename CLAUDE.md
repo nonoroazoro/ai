@@ -25,6 +25,7 @@ Before scraping or using MCP search tools, WebFetch `{site}/llms.txt` and locate
 Known `llms.txt` list:
 
 - Claude Code Docs: https://code.claude.com/docs/llms.txt
+- React Docs: https://react.dev/llms.txt
 
 ## Tools
 
