@@ -23,7 +23,7 @@ You are the Team Lead. Set up an Agent Team with specialized Teammates and orche
      - Docs: project conventions, plan docs, etc. (optional)
 
 3. **Configure Audit-Fix**:
-   - Ask the user whether to enable the audit-fix loop (default to `enabled`)
+   - Ask the user whether to enable the audit-fix loop (default to `false`)
    - Description: Compare implementation against design and auto-fix issues, costs more tokens
    - Store choice as `{enableAudit}`
 
