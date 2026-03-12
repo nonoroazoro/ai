@@ -22,9 +22,10 @@ Clean architecture, minimal design, performance first.
 
 Before scraping or using MCP search tools, WebFetch `{site}/llms.txt` and locate relevant docs directly.
 
-Example:
+Examples:
 
 - Claude Code Docs: https://code.claude.com/docs/llms.txt
+- Gemini CLI Docs: https://geminicli.com/llms.txt
 - React Docs: https://react.dev/llms.txt
 
 ## Tools
