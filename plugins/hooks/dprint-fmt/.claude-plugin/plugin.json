@@ -1,0 +1,5 @@
+{
+    "name": "dprint-fmt",
+    "description": "Format files with dprint after every edit",
+    "version": "1.0.0"
+}

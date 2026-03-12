@@ -21,6 +21,13 @@
       "homepage": "https://github.com/nonoroazoro/ai"
     },
     {
+      "name": "dprint-fmt",
+      "description": "Format files with dprint after every edit",
+      "category": "productivity",
+      "source": "./plugins/hooks/dprint-fmt",
+      "homepage": "https://github.com/nonoroazoro/ai"
+    },
+    {
       "name": "figma-to-code",
       "description": "Figma design to frontend code, Agent Teams version (Recommended)",
       "category": "development",
