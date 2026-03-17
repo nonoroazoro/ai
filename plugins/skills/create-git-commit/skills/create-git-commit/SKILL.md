@@ -8,7 +8,8 @@ argument-hint: [ai] (optional - add AI-Generated-By trailer)
 ## Workflow
 
 1. Check staging: Run `git status`
-   - If nothing staged: use `git add <file>` to stage specific relevant files
+   - If changes are already staged: proceed using ONLY the currently staged changes, DO NOT stage additional files
+   - If nothing is staged: stage only the specific files relevant to the change using `git add <file>`
 
 2. Analyze changes: Run `git diff --cached`
    - If multiple unrelated changes detected: split into separate commits by selectively adding files
