@@ -18,6 +18,10 @@ Clean architecture, minimal design, performance first.
 - TypeScript:
   - Never use non-null assertion operator (`!`).
 
+## Commands
+
+- Prefer project-configured commands (e.g., `npm run test`, `make test`) over raw CLI commands (e.g., `jest`).
+
 ## Search
 
 Before scraping or using MCP search tools, WebFetch `{site}/llms.txt` and locate relevant docs directly.
