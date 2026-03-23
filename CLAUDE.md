@@ -34,5 +34,5 @@ Examples:
 
 ## Tools
 
-- Local first, web search as fallback. For open source repos, clone locally before searching.
+- Local first, web search as fallback. For open source repos, you MUST clone locally before searching.
 - Proactively use installed MCP and Skills. If a needed tool is missing, search and install it.
