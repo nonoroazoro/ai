@@ -61,7 +61,7 @@ See the [main README](../../../README.md#installation) for installation instruct
 **Requirements**:
 
 - [Claude Code Agent Teams](https://docs.anthropic.com/en/docs/claude-code/agent-teams)
-- [Figma Desktop MCP](https://www.npmjs.com/package/@anthropic-ai/claude-code-figma-mcp)
+- [Figma Desktop MCP](https://developers.figma.com/docs/figma-mcp-server/local-server-installation)
 - [Playwright MCP](https://www.npmjs.com/package/@anthropic-ai/claude-code-playwright-mcp)
 
 ## Usage
