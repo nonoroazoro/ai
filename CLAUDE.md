@@ -16,6 +16,8 @@ Clean architecture, minimal design, performance first.
 - Exports:
   - Use barrel files (`index.ts`) with `export * from`.
   - Never use `export default`.
+- Imports:
+  - Import from the barrel, no deep imports.
 - TypeScript:
   - Never use non-null assertion operator (`!`).
 - JSDoc:
