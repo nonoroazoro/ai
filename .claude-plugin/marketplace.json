@@ -7,6 +7,13 @@
   },
   "plugins": [
     {
+      "name": "code-review",
+      "description": "Code review for local code changes with confidence scoring and false positive filtering",
+      "category": "productivity",
+      "source": "./plugins/skills/code-review",
+      "homepage": "https://github.com/nonoroazoro/ai"
+    },
+    {
       "name": "create-changelog",
       "description": "Transform git commits into user-friendly changelogs following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) specification",
       "category": "productivity",

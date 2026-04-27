@@ -1,0 +1,9 @@
+{
+    "name": "code-review",
+    "description": "Code review for local code changes with confidence scoring and false positive filtering",
+    "version": "1.0.0",
+    "author": {
+        "name": "nonoroazoro",
+        "url": "https://github.com/nonoroazoro"
+    }
+}
