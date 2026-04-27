@@ -8,15 +8,20 @@
 Clean architecture, minimal design, performance first.
 
 - Code and comments in English.
+- File Organization:
+  - One definition per file.
 - Naming:
-  - PascalCase only for type/class definition files (e.g., `SnapshotContext.ts`); other files use lowercase (e.g., `utils.ts`).
-  - Private class members, non-exported functions must be prefixed with `_` (e.g., `private _nodeID`, `function _getNodeID()`).
+  - PascalCase only for definition files (e.g., `SnapshotContext.ts`); other files use lowercase (e.g., `utils.ts`).
+  - Private class members must be prefixed with `_` (e.g., `private _nodeID`).
+- Exports:
+  - Use barrel files (`index.ts`) with `export * from`.
+  - Never use `export default`.
+- TypeScript:
+  - Never use non-null assertion operator (`!`).
 - JSDoc:
   - Use multi-line block style.
   - Use `{@link}` to reference (e.g., `{@link TypeName}`).
   - `@param` without `-` separator (e.g., `@param node The node.`).
-- TypeScript:
-  - Never use non-null assertion operator (`!`).
 
 ## Commands
 
