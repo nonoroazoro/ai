@@ -25,6 +25,11 @@ Clean architecture, minimal design, performance first.
   - Use `{@link}` to reference (e.g., `{@link TypeName}`).
   - `@param` without `-` separator (e.g., `@param node The node.`).
 
+## Tests
+
+- Mock data must match the type definition: all required fields, correct types.
+- Test paths mirror source paths (`src/a/b.ts` → `tests/a/b.test.ts`).
+
 ## Commands
 
 - Prefer project-configured commands (e.g., `npm run test`, `make test`) over raw CLI commands (e.g., `jest`).
