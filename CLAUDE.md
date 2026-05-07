@@ -5,7 +5,7 @@
 
 ## Code
 
-Clean architecture, minimal design, performance first.
+Clean architecture, minimal design, performance first. Match existing patterns.
 
 - Code and comments in English.
 - File Organization:
