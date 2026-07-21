@@ -1,15 +1,15 @@
 {
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write|NotebookEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jq -r '.tool_input.file_path // .tool_input.notebook_path' | xargs dprint fmt"
-          }
+    "hooks": {
+        "PostToolUse": [
+            {
+                "matcher": "Edit|Write|NotebookEdit",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "jq -r '.tool_input.file_path // .tool_input.notebook_path // empty' | dprint fmt --stdin-files --allow-no-files"
+                    }
+                ]
+            }
         ]
-      }
-    ]
-  }
+    }
 }
