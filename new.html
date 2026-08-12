@@ -3,9 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Git 首次上传指南</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --border: #334155;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --code-bg: #0b1220;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        /* 卡片容器 */
+        .terminal-card {
+            width: 100%;
+            max-width: 640px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease both;
+        }
+
+        /* 终端标题栏 */
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: #273449;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-header .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-header .dot.red { background: #f87171; }
+        .terminal-header .dot.yellow { background: #fbbf24; }
+        .terminal-header .dot.green { background: #34d399; }
+
+        .terminal-title {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+        }
+
+        /* 代码内容区 */
+        .terminal-body {
+            padding: 1.25rem 1.5rem;
+            font-family: "SF Mono", Menlo, Consolas, "Courier New", monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            background: var(--code-bg);
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        /* 注释行 */
+        .terminal-body .comment {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* 命令高亮 */
+        .terminal-body .cmd {
+            color: #e2e8f0;
+        }
+
+        .terminal-body .git {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* 滚动条 */
+        .terminal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .terminal-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .terminal-body::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        /* 按钮 */
+        #btn {
+            margin-top: 1.5rem;
+            padding: 0.75rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            background: var(--accent);
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.35);
+            transition: transform 0.15s ease, background 0.2s ease,
+                box-shadow 0.2s ease;
+            animation: fadeInUp 0.5s ease 0.15s both;
+        }
+
+        #btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(56, 189, 248, 0.45);
+        }
+
+        #btn:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="terminal-card">
+        <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">git — bash</span>
+        </div>
+        <div class="terminal-body"><span class="comment">## 首次上传项目</span>
+
+<span class="comment"># 1. 进入项目目录</span>
+<span class="cmd">cd 项目目录</span>
+
+<span class="comment"># 2. 初始化 Git 仓库</span>
+<span class="cmd"><span class="git">git</span> init</span>
+
+<span class="comment"># 3. 查看修改状态</span>
+<span class="cmd"><span class="git">git</span> status</span>
+
+<span class="comment"># 4. 暂存全部文件</span>
+<span class="cmd"><span class="git">git</span> add .</span>
+
+<span class="comment"># 5. 创建本地 commit</span>
+<span class="cmd"><span class="git">git</span> commit -m "Initial commit"</span>
+
+<span class="comment"># 6. 将当前分支命名为 main</span>
+<span class="cmd"><span class="git">git</span> branch -M main</span>
+
+<span class="comment"># 7. 添加远端仓库</span>
+<span class="cmd"><span class="git">git</span> remote add origin https://github.com/用户名/仓库名.git</span>
+
+<span class="comment"># 8. 检查远端地址</span>
+<span class="cmd"><span class="git">git</span> remote -v</span>
+
+<span class="comment"># 9. 上传 main 分支并建立跟踪关系</span>
+<span class="cmd"><span class="git">git</span> push -u origin main</span></div>
+    </div>
+
     <button id="btn">点击</button>
 
     <script>
