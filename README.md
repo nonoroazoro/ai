@@ -1,8 +1,20 @@
 # AI
 
-My Claude Code plugins.
+Reusable AI agent skills and Claude Code plugins.
 
-## Installation
+## Agent Skills
+
+General-purpose skills for compatible AI agents, following the [Agent Skills specification](https://agentskills.io/specification.md) and [skill creation best practices](https://agentskills.io/skill-creation/best-practices).
+
+- [**code-review**](skills/code-review) - Review code changes for correctness, security, architecture, maintainability, and performance
+- [**create-changelog**](skills/create-changelog) - Generate changelog entries from Git history following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
+- [**create-git-commit**](skills/create-git-commit) - Create Git commits using the repository's existing commit style
+
+---
+
+## Claude Code Plugins
+
+### Installation
 
 Add marketplace via Claude Code's plugin system:
 
@@ -17,8 +29,6 @@ Install plugins:
 ```
 
 ![How to install](docs/images/how-to-install.png)
-
-## Plugins
 
 ### Coding
 
