@@ -47,6 +47,10 @@ Clean architecture, minimal design, performance first. Match existing patterns.
 
 - Prefer project-configured commands (e.g., `npm test`, `bun test`, `make test`) over raw CLI commands (e.g., `jest`).
 
+## Git
+
+- Keep code changes unstaged by default. Do not run `git add` or otherwise modify the Git index unless the user explicitly requests staging.
+
 ## Search
 
 Before scraping or using search tools, WebFetch `{site}/llms.txt` and locate relevant docs directly.
