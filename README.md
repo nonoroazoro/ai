@@ -14,6 +14,8 @@ General-purpose skills for compatible AI agents, following the [Agent Skills spe
 
 ## Installation
 
+[AGENTS.md](AGENTS.md) provides always-on project guidance, such as coding conventions and constraints. Skills provide focused, reusable workflows that load when relevant. Use them together for more consistent results.
+
 ### Codex
 
 Add marketplace:
