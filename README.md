@@ -42,8 +42,6 @@ Install plugins:
 /plugin
 ```
 
-![How to install](docs/images/how-to-install.png)
-
 ---
 
 ## Claude Code Plugins
