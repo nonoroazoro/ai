@@ -1,64 +1,38 @@
 ## Communication
 
-- Think in English, communicate in Chinese, keep technical terms in English.
-- Direct, concise, no fluff. Point out problems and fix them.
+- Communicate in concise Chinese and keep technical terms in English.
+- Generate artifacts in English unless requested otherwise. Never use em dashes.
 
-## Engineering Judgment
+## Implementation
 
-- Separate goals and constraints from proposed solutions. Verify technical claims against repository facts.
-- Recommend the simplest sound design that fits the existing architecture, authoritative guidance, established practice, and actual trade-offs.
-- Push back on unsupported or harmful suggestions. Change direction only when evidence or clarified requirements justify it.
-- Discuss material architecture, scope, risk, or maintenance decisions before implementation. Use sensible defaults for minor reversible choices.
+- Understand goals, constraints, and affected flows; validate solutions against repository facts, architecture, authoritative guidance, and established practice.
+- Use the first sufficient option in this order: no change, existing code, standard library, native feature, installed dependency, minimal local code.
+- Challenge unsupported or harmful requirements. Discuss material trade-offs before implementation; use sensible defaults for minor reversible choices.
+- Minimize ownership surface; add abstractions, configuration, or dependencies only for concrete needs.
+- Base performance decisions on requirements and evidence, not speculation.
+- For bugs, inspect callers and fix the shared root cause, not symptoms.
+- Never sacrifice readability, correctness, security, trust-boundary validation, data safety, accessibility, or required behavior.
+- Explain critical decisions, invariants, constraints, and non-obvious trade-offs in comments; do not restate code.
+- Mark accepted shortcuts with a known ceiling and objective trigger: `DEBT: <shortcut>; CEILING: <limit>; REVISIT_WHEN: <trigger>`. Do not use this marker for ordinary TODOs.
 
-## Generated Artifacts
+## Code
 
-These rules apply to all AI-generated artifacts outside conversational communication.
+- Prefix private class members with `_`.
+- Test paths mirror source paths. Mock data must include every required field with the correct type.
 
-- Generate artifacts in English by default, unless the user explicitly requests another language.
-- DO NOT use Em Dash (—) in generated artifacts, including code, docs, Markdown, prompts, comments, configs, and user-facing text.
+### JavaScript
 
-### Code
+- Keep each class, type, interface, enum, or similar definition in its own file. Functions are exempt and may be grouped by cohesive responsibility.
+- Use PascalCase for files centered on a class, type, interface, enum, or React component; use lowercase for function collections, utilities, and other modules.
+- Export through barrel files (`index.ts`) with `export * from`; never use default exports or deep imports.
+- Use multi-line JSDoc blocks, `{@link}` references, and `@param` without a `-` separator.
 
-Clean architecture, minimal design, performance first. Match existing patterns.
+## Repository
 
-- File Organization:
-  - One definition per file.
-- Naming:
-  - PascalCase only for definition files (e.g., `SnapshotContext.ts`); other files use lowercase (e.g., `utils.ts`).
-  - Private class members must be prefixed with `_` (e.g., `private _nodeID`).
-- Exports:
-  - Use barrel files (`index.ts`) with `export * from`.
-  - Never use `export default`.
-- Imports:
-  - Import from the barrel, no deep imports.
-- TypeScript:
-  - Never use non-null assertion operator (`!`).
-- JSDoc:
-  - Use multi-line block style.
-  - Use `{@link}` to reference (e.g., `{@link TypeName}`).
-  - `@param` without `-` separator (e.g., `@param node The node.`).
-
-### Tests
-
-- Mock data must match the type definition: all required fields, correct types.
-- Test paths mirror source paths (`src/a/b.ts` → `tests/a/b.test.ts`).
-
-## Commands
-
-- Prefer project-configured commands (e.g., `npm test`, `bun test`, `make test`) over raw CLI commands (e.g., `jest`).
-
-## Git
-
-- Keep code changes unstaged by default. Do not run `git add` or otherwise modify the Git index unless the user explicitly requests staging.
+- Prefer repository-defined commands over raw tool commands.
+- Keep changes unstaged; modify the Git index only when explicitly requested.
 
 ## Search
 
-Before scraping or using search tools, WebFetch `{site}/llms.txt` and locate relevant docs directly.
-
-Examples:
-
-- Claude Code Docs: https://code.claude.com/docs/llms.txt
-- Gemini CLI Docs: https://geminicli.com/llms.txt
-- React Docs: https://react.dev/llms.txt
-
-For open source repos, you MUST clone and search locally.
+- Prefer authoritative sources, especially `llms.txt` and source code.
+- Clone source repositories locally when practical.
