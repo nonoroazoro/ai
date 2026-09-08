@@ -6,9 +6,9 @@ Reusable AI agent skills and plugins for Claude Code and Codex.
 
 General-purpose skills for compatible AI agents, following the [Agent Skills specification](https://agentskills.io/specification.md) and [skill creation best practices](https://agentskills.io/skill-creation/best-practices).
 
-- [**code-review**](skills/code-review) - Review code changes for correctness, security, architecture, maintainability, and performance
-- [**create-changelog**](skills/create-changelog) - Generate changelog entries from Git history following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
-- [**create-git-commit**](skills/create-git-commit) - Create Git commits using the repository's existing commit style
+- [**code-review**](skills/code-review/SKILL.md) - Review code changes for correctness, security, architecture, maintainability, and performance
+- [**create-changelog**](skills/create-changelog/SKILL.md) - Generate changelog entries from Git history following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
+- [**create-git-commit**](skills/create-git-commit/SKILL.md) - Create Git commits using the repository's existing commit style
 
 ---
 
@@ -53,8 +53,9 @@ Install plugins:
 
 ### Git
 
-- [**create-changelog**](plugins/skills/create-changelog) - Transform git commits into user-friendly changelogs following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) specification
-- [**create-git-commit**](plugins/skills/create-git-commit) - Create git commits
+- [**code-review**](skills/code-review/SKILL.md) - Review code changes for correctness, security, architecture, maintainability, and performance
+- [**create-changelog**](skills/create-changelog/SKILL.md) - Generate changelog entries from Git history following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
+- [**create-git-commit**](skills/create-git-commit/SKILL.md) - Create Git commits using the repository's existing commit style
 
 ### Misc
 
