@@ -1,6 +1,6 @@
 # AI
 
-Reusable AI agent skills and Claude Code plugins.
+Reusable AI agent skills and plugins for Claude Code and Codex.
 
 ## Agent Skills
 
@@ -12,11 +12,25 @@ General-purpose skills for compatible AI agents, following the [Agent Skills spe
 
 ---
 
-## Claude Code Plugins
+## Installation
 
-### Installation
+### Codex
 
-Add marketplace via Claude Code's plugin system:
+Add marketplace:
+
+```bash
+codex plugin marketplace add nonoroazoro/ai
+```
+
+Install plugins:
+
+```bash
+codex plugin add plugins@plugins
+```
+
+### Claude Code
+
+Add marketplace:
 
 ```bash
 /plugin marketplace add nonoroazoro/ai
@@ -29,6 +43,10 @@ Install plugins:
 ```
 
 ![How to install](docs/images/how-to-install.png)
+
+---
+
+## Claude Code Plugins
 
 ### Coding
 

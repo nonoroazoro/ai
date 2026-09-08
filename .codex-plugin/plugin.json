@@ -1,0 +1,12 @@
+{
+  "name": "plugins",
+  "version": "1.0.0",
+  "description": "Personal Codex plugins",
+  "author": {
+    "name": "nonoroazoro",
+    "url": "https://github.com/nonoroazoro"
+  },
+  "homepage": "https://github.com/nonoroazoro/ai",
+  "repository": "https://github.com/nonoroazoro/ai",
+  "skills": "./skills/"
+}

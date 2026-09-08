@@ -1,0 +1,21 @@
+{
+  "name": "plugins",
+  "interface": {
+    "displayName": "Plugins"
+  },
+  "plugins": [
+    {
+      "name": "plugins",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/nonoroazoro/ai.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
