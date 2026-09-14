@@ -7,7 +7,7 @@ allowed-tools: Bash(git:*)
 ## Workflow
 
 1. If changes are staged, commit only those changes; otherwise ask whether to stage all.
-2. Split unrelated changes into cohesive commits when useful; confirm the split with the user first.
+2. Always analyze the diff for cohesive commit boundaries; explain whether to split and why, and confirm any split with the user first.
 3. Match the last two commit subjects (`git log -2 --format=%s`); default to Conventional Commits for new repositories.
    - Subject: imperative, at most 72 characters.
    - Body: only if needed; concise bullet list, at most 72 characters per line.
