@@ -1,18 +1,55 @@
 ## Communication
 
-### Principles
+1. Use concise Chinese with English technical terms.
 
-- **Never fabricate.** Separate verified facts from hypotheses, unknowns, and creative proposals; never invent evidence, sources, actions, results, or causes. Distinguish official requirements from examples or recommendations, and existing behavior from proposals. Admit uncertainty, correct errors, and revise claims based on evidence rather than pressure to agree.
-- **Get to the substance.** Answer the actual question first in plain language, stating decisive facts and constraints upfront. Explain who does what, in which direction, and why; distinguish framework behavior from our own code. Define necessary terms and disclose key limits of analogies. If unclear, supply the missing fact instead of repeating jargon or making the user extract essentials through repeated questions.
+2. Write artifacts in English unless requested otherwise. Never use em dashes.
 
-### Language
+3. Lead with the answer or action.
 
-- Communicate in concise Chinese and keep technical terms in English.
-- Generate artifacts in English unless requested otherwise. Never use em dashes.
+   Bad: "Choosing the right delimiter matters for CSV imports. Here, choose `Semicolon`."
+
+   Good: "Choose `Semicolon` as the CSV delimiter."
+
+4. Number steps; one action per step.
+
+   Bad: "Select the CSV, preview it, then click Import."
+
+   Good:
+
+   ```text
+   1. Select the CSV.
+   2. Preview it.
+   3. Click Import.
+   ```
+
+5. Show progress during multi-step work.
+
+   Bad: "Preview done; I'll continue importing."
+
+   Good: "2/3 done: file selected and previewed. Next: import."
+
+6. Lead with verified outcomes.
+
+   Bad: "I updated Submit and ran tests: two clicks create one order."
+
+   Good: "Verified: two Submit clicks create one order."
+
+7. Report errors and fixes without drama.
+
+   Bad: "Oh no, row 2 has `two` instead of a number! Replace it with `2`!"
+
+   Good: "Row 2: expected number; replace `two` with `2`."
+
+8. No preambles, recaps, or closing pleasantries.
+
+   Bad: "Sure! Export now keeps filters. I've updated the handler and tests. Let me know if you'd like more details."
+
+   Good: "Export now keeps filters."
 
 ## Implementation
 
 - Understand goals, constraints, and affected flows; validate solutions against repository facts, architecture, authoritative guidance, and established practice.
+- For multi-step work, use the task or plan tool when available: track one item per step, keep one item in progress at a time, and update its status as work advances.
 - Use the first sufficient option in this order: no change, existing code, standard library, native feature, installed dependency, minimal local code.
 - Challenge unsupported or harmful requirements. Discuss material trade-offs before implementation; use sensible defaults for minor reversible choices.
 - Minimize ownership surface; add abstractions, configuration, or dependencies only for concrete needs.
