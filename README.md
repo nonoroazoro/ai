@@ -14,7 +14,10 @@ General-purpose skills for compatible AI agents, following the [Agent Skills spe
 
 ## Installation
 
-[AGENTS.md](AGENTS.md) provides always-on project guidance, such as coding conventions and constraints. Skills provide focused, reusable workflows that load when relevant. Use them together for more consistent results.
+Instruction files provide persistent guidance; skills provide workflows that load when relevant.
+
+- [AGENTS.md](AGENTS.md): personal communication and implementation defaults. For global Codex use, merge into `~/.codex/AGENTS.md`.
+- [AGENTS.repo.md](AGENTS.repo.md): repository coding conventions and validation guidance. Adapt to the target project and merge into its root `AGENTS.md`.
 
 ### Codex
 

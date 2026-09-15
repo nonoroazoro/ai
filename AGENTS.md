@@ -24,11 +24,11 @@
 
 5. Show progress during multi-step work.
 
-   Bad: "Preview done; I'll continue importing."
+   Bad: "Continuing with the import."
 
    Good: "2/3 done: file selected and previewed. Next: import."
 
-6. Lead with verified outcomes.
+6. Lead with verified outcomes after changes.
 
    Bad: "I updated Submit and ran tests: two clicks create one order."
 
@@ -40,7 +40,7 @@
 
    Good: "Row 2: expected number; replace `two` with `2`."
 
-8. No preambles, recaps, or closing pleasantries.
+8. No preambles, redundant recaps, or closing pleasantries.
 
    Bad: "Sure! Export now keeps filters. I've updated the handler and tests. Let me know if you'd like more details."
 
@@ -48,33 +48,45 @@
 
 ## Implementation
 
-- Understand goals, constraints, and affected flows; validate solutions against repository facts, architecture, authoritative guidance, and established practice.
-- For multi-step work, use the task or plan tool when available: track one item per step, keep one item in progress at a time, and update its status as work advances.
-- Use the first sufficient option in this order: no change, existing code, standard library, native feature, installed dependency, minimal local code.
-- Challenge unsupported or harmful requirements. Discuss material trade-offs before implementation; use sensible defaults for minor reversible choices.
-- Minimize ownership surface; add abstractions, configuration, or dependencies only for concrete needs.
-- Base performance decisions on requirements and evidence, not speculation.
-- For bugs, inspect callers and fix the shared root cause, not symptoms.
-- Never sacrifice readability, correctness, security, trust-boundary validation, data safety, accessibility, or required behavior.
-- Explain critical decisions, invariants, constraints, and non-obvious trade-offs in comments; do not restate code.
-- Mark accepted shortcuts with a known ceiling and objective trigger: `DEBT: <shortcut>; CEILING: <limit>; REVISIT_WHEN: <trigger>`. Do not use this marker for ordinary TODOs.
+1. Identify constraints and success criteria; trace affected flows.
 
-## Code
+2. Inspect existing patterns; verify uncertain APIs against source or official docs.
 
-- Prefix private class members with `_`.
-- Test paths mirror source paths. Mock data must include every required field with the correct type.
+3. Track nontrivial work with available plan tools; keep one step in progress.
 
-### JavaScript
+4. Choose the first sufficient option.
 
-- Keep each class, type, interface, enum, or similar definition in its own file. Functions are exempt and may be grouped by cohesive responsibility.
-- Use PascalCase for files centered on a class, type, interface, enum, or React component; use lowercase for function collections, utilities, and other modules.
-- Export through barrel files (`index.ts`) with `export * from`; never use default exports or deep imports.
-- Use multi-line JSDoc blocks, `{@link}` references, and `@param` without a `-` separator.
+   No change > existing code > standard library > native feature > installed dependency > minimal local code.
 
-## Repository
+5. Discuss material risks or trade-offs when they affect implementation.
 
-- Prefer repository-defined commands over raw tool commands.
-- Keep changes unstaged; modify the Git index only when explicitly requested.
+6. Use sensible defaults for minor reversible choices.
+
+7. Tie new abstractions, configuration, and dependencies to current requirements.
+
+8. For performance changes, measure before and after.
+
+9. For bugs, inspect callers and fix the root cause.
+
+   Bad: "Patch date parsing in each caller."
+
+   Good: "Fix the shared date parser."
+
+10. Review readability; run required checks without redundant reruns.
+
+11. Validate untrusted input; prevent data loss or corruption on failure.
+
+12. Comment on non-obvious decisions, invariants, constraints, and trade-offs.
+
+    Bad: "Retry up to three times."
+
+    Good: "Cap retries to stay within the request budget."
+
+13. Reserve DEBT for accepted shortcuts with limits and revisit triggers.
+
+    `DEBT: <shortcut>; CEILING: <limit>; REVISIT_WHEN: <objective trigger>`
+
+14. Keep changes unstaged; modify the Git index only when explicitly requested.
 
 ## Search
 
