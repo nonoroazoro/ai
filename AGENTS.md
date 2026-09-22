@@ -88,6 +88,38 @@
 
 14. Keep changes unstaged; modify the Git index only when explicitly requested.
 
+## Code
+
+1. Follow framework contracts and existing project conventions before these defaults.
+
+2. Prefix private class members with `_`.
+
+3. Mirror source paths in tests; include every required field with the correct type in mocks.
+
+### JavaScript and TypeScript
+
+1. Keep each class, type, interface, or enum in its own file.
+
+2. Group functions by cohesive responsibility.
+
+3. Use PascalCase for files centered on a class, type, interface, enum, or component; lowercase for other modules.
+
+4. Use named exports and `export * from` in `index.ts` barrels.
+
+5. Import across module boundaries through public barrels instead of internal module paths. Within a module, use relative imports to avoid importing through its own barrel.
+
+6. Use multi-line JSDoc, `{@link}` references, and `@param` without a `-` separator.
+
+## Validation
+
+1. Prefer repository-defined commands; find them in scripts and CI configuration.
+
+2. Use configured linters, formatters, and type checkers for mechanical rules.
+
+3. Run behavior, security, and accessibility checks relevant to the change.
+
+4. Report checks that could not run and their blockers.
+
 ## Search
 
 - Prefer authoritative sources, especially `llms.txt` and source code.
