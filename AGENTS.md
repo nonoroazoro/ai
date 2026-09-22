@@ -92,23 +92,19 @@
 
 1. Follow framework contracts and existing project conventions before these defaults.
 
-2. Prefix private class members with `_`.
+2. Keep each class, type, interface, or enum in its own file.
 
-3. Mirror source paths in tests; include every required field with the correct type in mocks.
+3. Group functions by cohesive responsibility.
+
+4. Use PascalCase for files centered on a class, type, interface, enum, or component; lowercase for other modules.
+
+5. Prefix private class members and private functions with `_`. Place private functions/methods last in their file/class.
+
+6. Mirror source paths in tests; include every required field with the correct type in mocks.
 
 ### JavaScript and TypeScript
 
-1. Keep each class, type, interface, or enum in its own file.
-
-2. Group functions by cohesive responsibility.
-
-3. Use PascalCase for files centered on a class, type, interface, enum, or component; lowercase for other modules.
-
-4. Use named exports and `export * from` in `index.ts` barrels.
-
-5. Import across module boundaries through public barrels instead of internal module paths. Within a module, use relative imports to avoid importing through its own barrel.
-
-6. Use multi-line JSDoc, `{@link}` references, and `@param` without a `-` separator.
+1. Use multi-line JSDoc, `{@link}` references, and `@param` without a `-` separator.
 
 ## Validation
 
